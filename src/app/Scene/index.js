@@ -1,14 +1,15 @@
 
-import { Scene, Color3, FreeCamera, Vector3, MeshBuilder, Mesh, HemisphericLight, PointLight, StandardMaterial } from 'babylonjs'
+import { Scene, Color3, FreeCamera, Vector3, Color4, MeshBuilder, Mesh, HemisphericLight, PointLight, StandardMaterial } from 'babylonjs'
 import { createCity } from 'app/City'
 import { createCrust, addCrustSlice } from 'app/Crust'
 
 export const createScene = (engine, canvas, size) => {
     const scene = new Scene(engine)
-    scene.clearColor = new Color3(1, 1, 1)
+    scene.clearColor = new Color4(1, 0, 0, 0)
+
 
     // Camera
-    const camera = new FreeCamera("camera", new Vector3(-95, 40, -155), scene)
+    const camera = new FreeCamera("camera", new Vector3(-95, 40, -105), scene)
     camera.setTarget(Vector3.Zero())
 
     // Light
@@ -19,7 +20,7 @@ export const createScene = (engine, canvas, size) => {
     // - water
     const materialWater = new StandardMaterial('materialWater', scene)
     materialWater.diffuseColor = Color3.Blue()
-    materialWater.emissiveColor = new Color3(0.1, 0.1, 0.1)
+    materialWater.emissiveColor = new Color3(0.0, 0.5, 0.75)
     materialWater.alpha = 0.75
 
     ////

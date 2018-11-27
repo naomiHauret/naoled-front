@@ -22,7 +22,7 @@ export const createCity = (scene) => {
 
   const building3 = MeshBuilder.CreateBox("building3", { height: 10, width: 4, depth: 4 }, scene)
   building3.parent = borroughGroup
-  building3.position = new Vector3(0, 10, -15)
+  building3.position = new Vector3(0, 4.5, -15)
   building3.material = buildingMaterial
 
   const building4 = MeshBuilder.CreateBox("building4", { height: 5, width: 3, depth: 3 }, scene)
@@ -32,7 +32,7 @@ export const createCity = (scene) => {
 
   const building5 = MeshBuilder.CreateBox("building5", { height: 18, width: 4, depth: 4 }, scene)
   building5.parent = borroughGroup
-  building5.position = new Vector3(-10, 10, -15)
+  building5.position = new Vector3(-10, 9, -15)
   building5.material = buildingMaterial
 
   const building6 = MeshBuilder.CreateBox("building6", { height: 45, width: 12, depth: 12 }, scene)
