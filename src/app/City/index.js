@@ -74,10 +74,3 @@ export const createCity = (scene) => {
 
   return cityGroup
 }
-
-export const addBuilding = (scene, name, height, width, depth, y) => {
-  const building = MeshBuilder.CreateBox(name, { height: height, width: width, depth: depth }, scene)
-  building.position.y = y
-
-  return building
-}
