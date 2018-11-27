@@ -10,7 +10,9 @@
     "dev:wds": "npx webpack-dev-server --open --port 3000 --content-base dist --history-api-fallback --watch-content-base --config webpack.dev.js",
     "prod:wds": "npx webpack-dev-server --open --compress --port 3004 --content-base dist --history-api-fallback --watch-content-base --config webpack.dev.js",
     "dev": "npm run dev:build && npm run dev:wds",
-    "prod": "npm run prod:build && npm run prod:wds"
+    "prod": "npm run prod:build && npm run prod:wds",
+    "deploy": "npm run prod:build && npx surge --domain naoled.surge.sh",
+    "prod:deploy": "npx surge --domain naoled.surge.sh"
   },
   "author": "",
   "license": "MIT",
@@ -24,7 +26,6 @@
     "mini-css-extract-plugin": "^0.4.5",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "style-loader": "^0.23.1",
-    "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10",
@@ -32,6 +33,17 @@
   },
   "dependencies": {
     "babylonjs": "^3.3.0",
+    "browserslist": "^4.3.4",
     "socket.io-client": "^2.1.1"
-  }
+  },
+  "browserslist": [
+    "> 2%",
+    "not safari <= 10",
+    "not ie <=11",
+    "not ie_mob <=11",
+    "not bb <=10",
+    "not op_mob <= 37",
+    "not samsung <= 7",
+    "not op_mini all"
+  ]
 }
