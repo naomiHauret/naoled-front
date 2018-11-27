@@ -1,0 +1,37 @@
+{
+  "name": "naoled",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run dev",
+    "dev:build": "npx rimraf dist && npx cross-env process.env.NODE_ENV=development webpack --mode development --config webpack.dev.js",
+    "prod:build": "npx rimraf dist && npx cross-env process.env.NODE_ENV=production webpack --mode production --config webpack.prod.js && npx rimraf dist/dist",
+    "dev:wds": "npx webpack-dev-server --open --port 3000 --content-base dist --history-api-fallback --watch-content-base --config webpack.dev.js",
+    "prod:wds": "npx webpack-dev-server --open --compress --port 3004 --content-base dist --history-api-fallback --watch-content-base --config webpack.dev.js",
+    "dev": "npm run dev:build && npm run dev:wds",
+    "prod": "npm run prod:build && npm run prod:wds"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "brotli-webpack-plugin": "^1.0.0",
+    "copy-webpack-plugin": "^4.6.0",
+    "cross-env": "^5.2.0",
+    "css-loader": "^1.0.1",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.4.5",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
+    "webpack-merge": "^4.1.4"
+  },
+  "dependencies": {
+    "babylonjs": "^3.3.0",
+    "socket.io-client": "^2.1.1"
+  }
+}
