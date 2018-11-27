@@ -1,45 +1,44 @@
 
-import { Scene, Color3, FreeCamera, Vector3, MeshBuilder, Mesh, HemisphericLight, StandardMaterial } from 'babylonjs'
-import { addBuilding } from 'app/Building'
+import { Scene, Color3, FreeCamera, Vector3, MeshBuilder, Mesh, HemisphericLight, PointLight, StandardMaterial } from 'babylonjs'
+import { createCity } from 'app/City'
+import { createCrust, addCrustSlice } from 'app/Crust'
 
 export const createScene = (engine, canvas, size) => {
     const scene = new Scene(engine)
+    scene.clearColor = new Color3(1, 1, 1)
 
     // Camera
-    const camera = new FreeCamera("camera1", new Vector3(-5, 5, -45), scene)
+    const camera = new FreeCamera("camera", new Vector3(-95, 40, -155), scene)
     camera.setTarget(Vector3.Zero())
-    camera.tran
-    camera.attachControl(canvas, true) // set camera controls
 
     // Light
-    const light = new HemisphericLight("light", new Vector3(0, 1, 0), scene)
-    light.intensity = 0.7
+    const light1 = new HemisphericLight("light1", new Vector3(1, 0, 0), scene)
+    const light2 = new PointLight("light2", new Vector3(0, 60, 0), scene)
 
     // Materials
+    // - water
     const materialWater = new StandardMaterial('materialWater', scene)
     materialWater.diffuseColor = Color3.Blue()
     materialWater.emissiveColor = new Color3(0.1, 0.1, 0.1)
-    materialWater.alpha = 0.5
-
+    materialWater.alpha = 0.75
 
     ////
     //  MESHES
     ////
-    // GROUND
-    const ground = Mesh.CreateGround("ground", size, size, 0, scene)
+    const group = Mesh.CreateBox("naoLED", 1, scene)
 
-    // BUILDINGS
-    // - addBuilding(scene, name, height, width, depth, y)
-    addBuilding(scene, '1a', 10, 3, 3, 5)
+    // City
+    const city = createCity(scene)
+    city.parent = group
+    city.position.y = 6
 
-    // EARTH
+    // CRUST
+    const crust = createCrust(scene, size)
+    const waterCrust = addCrustSlice(scene, "water", 1.5, size + 15, size + 15, -4.75)
+    waterCrust.parent = crust
+    waterCrust.material = materialWater
 
-
-    // WATER
-    const watercube = MeshBuilder.CreateBox("watercube", { height: 0.5, width: size, depth: size }, scene)
-    watercube.material = materialWater
-    watercube.position.y = -5
-
+    crust.parent = group
 
     return scene
   }

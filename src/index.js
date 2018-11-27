@@ -9,7 +9,7 @@ const socket = io(url)
 window.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('render')
   const engine = new Engine(canvas, true)
-  const size  = 20
+  const size  = 40
   const scene = createScene(engine, canvas, size)
   engine.runRenderLoop(() => {
     scene.render()
