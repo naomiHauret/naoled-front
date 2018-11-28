@@ -43,6 +43,7 @@ module.exports = {
               minimize: false,
             },
           },
+          'postcss-loader',
         ],
       },
       // Assets
