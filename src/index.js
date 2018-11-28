@@ -3,7 +3,8 @@ import io from "socket.io-client"
 import { Engine } from 'babylonjs'
 import { createScene } from 'app/Scene'
 
-const url = 'http://localhost:5000'
+const url = process.env.NODE_ENV === 'production' ? process.env.SOCKET_URL_PROD : process.env.SOCKET_URL_DEV
+console.log(url)
 const socket = io(url)
 
 socket.on('event', e => {
