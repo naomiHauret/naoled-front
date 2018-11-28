@@ -3,8 +3,12 @@ import io from "socket.io-client"
 import { Engine } from 'babylonjs'
 import { createScene } from 'app/Scene'
 
-const url = ""
+const url = 'http://localhost:5000'
 const socket = io(url)
+
+socket.on('event', e => {
+  console.log(e)
+})
 
 window.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('render')
