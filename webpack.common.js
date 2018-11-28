@@ -2,9 +2,11 @@ const path = require("path")
 const webpack = require("webpack")
 const CopyPlugin = require("copy-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const Dotenv = require("dotenv-webpack")
 const exludedFolders = [path.join(__dirname, "node_modules")]
 
 let plugins = [
+  new Dotenv(),
   new CopyPlugin([
     { from: "./src/assets/fonts", to: "./assets/fonts" },
   ]),
