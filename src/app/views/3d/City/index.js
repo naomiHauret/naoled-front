@@ -1,9 +1,14 @@
-import { MeshBuilder, Mesh, Vector3, Color3, StandardMaterial } from 'babylonjs'
+import { MeshBuilder, Mesh, Vector3, Color3, StandardMaterial } from "babylonjs"
 
 export const createCity = (scene) => {
+<<<<<<< HEAD:src/app/views/3d/City/index.js
 
   const buildingMaterial = new BABYLON.PBRMetallicRoughnessMaterial("pbr", scene)
   buildingMaterial.baseColor = new BABYLON.Color3(1.000, 1.000, 1.000)
+=======
+  const buildingMaterial = new BABYLON.PBRMetallicRoughnessMaterial("pbr", scene)
+  buildingMaterial.baseColor = new BABYLON.Color3(1.0, 1.0, 1.0)
+>>>>>>> :wrench: added git hookst to workflow:src/app/City/index.js
   buildingMaterial.metallic = 0
   buildingMaterial.roughness = 1.0
 
@@ -77,7 +82,10 @@ export const createCity = (scene) => {
   building11.position = new Vector3(20, 2, 5)
   building11.material = buildingMaterial
   building11.receiveShadows = true
+<<<<<<< HEAD:src/app/views/3d/City/index.js
 
+=======
+>>>>>>> :wrench: added git hookst to workflow:src/app/City/index.js
 
   const subground = MeshBuilder.CreateBox("subground", { height: 0.5, width: 25, depth: 28 }, scene)
   subground.parent = cityGroup

@@ -22,8 +22,11 @@
 .grow-1 {
   flex-grow: 1;
 }
+<<<<<<< HEAD
 
 /* Justify content */
 .justify-between {
   justify-content: space-between;
 }
+=======
+>>>>>>> :wrench: added git hookst to workflow
