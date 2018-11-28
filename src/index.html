@@ -6,7 +6,31 @@
   <title>NaoLED</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-  <canvas id="render"></canvas>
+<body class="flex flex-col-reverse minh-100vh">
+  <nav>
+    <ul class="flex list-none">
+      <li>
+        <a href="/dashboard">
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="/history">
+          Historique
+        </a>
+      </li>
+      <li>
+        <a href="/about">
+          A propos
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <main class="grow-1 flex flex-wrap">
+    <canvas class="w-75 h-100vh touch-none" id="render"></canvas>
+    <div class="grow-1">
+      Blablablablablablablabla
+    </div>
+  </main>
 </body>
 </html>
