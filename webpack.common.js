@@ -33,6 +33,12 @@ module.exports = {
   },
   module: {
     rules: [
+      // JS
+      {
+        test: /\.js$/,
+        exclude: exludedFolders,
+        use: 'babel-loader',
+      },
       // CSS
       {
         test: /src(\/|\\).*\.css$/,
