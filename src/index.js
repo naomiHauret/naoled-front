@@ -27,3 +27,15 @@ window.addEventListener('DOMContentLoaded', () => {
     })
   }
 })
+
+io.on('ashbinAdd', data => {
+  console.log('ashbinAdd', data);
+})
+
+io.on('trashIn', data => {
+  console.log('trashIn', data);
+})
+
+io.on('trashOut', data => {
+  console.log('trashOut', data);
+})
