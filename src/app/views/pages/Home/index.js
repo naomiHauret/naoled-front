@@ -1,7 +1,7 @@
 import { html, render } from 'lit-html'
 import { eventComponentFrom } from 'app/views/components/Event'
 
-  const events = [{
+const events = [{
     time: '12:15',
     title: 'Hello, this is event',
   }, {
@@ -19,7 +19,7 @@ import { eventComponentFrom } from 'app/views/components/Event'
   }]
   const eventsListTemplate = []
   const eventsList = html`
-      <ul>
+      <ul class="m">
         ${events.map((event) => html`${eventComponentFrom(event)}`)}
       </ul>
     `
