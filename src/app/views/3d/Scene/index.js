@@ -21,6 +21,7 @@ import {
   Animation
 } from 'babylonjs'
 import { createCity } from 'app/views/3d/City'
+import { createFire } from 'app/views/3d/Scene/effects'
 import { createCrust, addCrustSlice } from 'app/views/3d/Crust'
 import upgradeMesh from 'app/views/3d/Subdivide'
 
@@ -178,59 +179,14 @@ export const createScene = (engine, canvas, size) => {
   moveCamForwardAnimation.setKeys(moveCamForwardAnimationKeys1)
   scene.beginDirectAnimation(camera, [rotateCamAnimation, moveCamForwardAnimation], 0, 25 * frameRate, true, 1)
 
+  // BABYLON ON FIREEEE
+  const fire1 = createFire("fire1", scene)
+  fire1.emitter = new Vector3(6, 25, .5)
 
-  // Create a particle system
-  var particleSystem = new ParticleSystem("particles", 2000, scene);
+  const fire2 = createFire("fire2", scene)
+  fire2.emitter = new Vector3(16, 20, .5)
 
-  //Texture of each particle
-  particleSystem.particleTexture = new Texture("https://i.ibb.co/d7CBT7v/falre.png", scene);
-
-  // Where the particles come from
-  particleSystem.emitter = new Vector3(6, 25, .5); // the starting object, the emitter
-  particleSystem.minEmitBox = new Vector3(.5, 0, .5); // Starting all from
-  particleSystem.maxEmitBox = new Vector3(-.5, 0, -.5); // To...
-
-  // Colors of all particles
-  particleSystem.color1 = new Color4(1, 0.05, 0, 1);
-  particleSystem.color2 = new Color4(0.1, 0.1, 0.1, 1);
-
-  particleSystem.colorDead = new Color4(0.3, 0, 0, 0);
-
-  // Size of each particle (random between...
-  particleSystem.minSize = 0.9;
-  particleSystem.maxSize = 3;
-
-  // Life time of each particle (random between...
-  particleSystem.minLifeTime = .4;
-  particleSystem.maxLifeTime = .5;
-
-  // Emission rate
-  particleSystem.emitRate = 1000;
-
-  // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
-  particleSystem.blendMode =  ParticleSystem.BLENDMODE_MULTIPLYADD;
-
-  // Set the gravity of all particles
-  particleSystem.gravity = new Vector3(0, 29.81, 0);
-
-  // Direction of each particle after it has been emitted
-  particleSystem.direction1 = new Vector3(3, 6, -3);
-  particleSystem.direction2 = new Vector3(-3, 6, 3);
-
-  // Angular speed, in radians
-  particleSystem.minAngularSpeed = Math.PI;
-  particleSystem.maxAngularSpeed = Math.PI;
-
-  // Speed
-  particleSystem.minEmitPower = 1;
-  particleSystem.maxEmitPower = 3;
-  particleSystem.updateSpeed = 0.003;
-
-  // Start the particle system
-  particleSystem.start();
-
-
-    return scene
-  }
+  return scene
+}
 
 
