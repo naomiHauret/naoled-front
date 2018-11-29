@@ -1,7 +1,7 @@
 
 import { Scene, Color3, FreeCamera, Vector3, Color4, MeshBuilder, Mesh, HemisphericLight, PointLight, StandardMaterial } from 'babylonjs'
-import { createCity } from 'app/City'
-import { createCrust, addCrustSlice } from 'app/Crust'
+import { createCity } from 'app/views/3d/City'
+import { createCrust, addCrustSlice } from 'app/views/3d/Crust'
 
 export const createScene = (engine, canvas, size) => {
     const scene = new Scene(engine)

@@ -1,6 +1,6 @@
 import { html } from 'lit-html'
 
-export let about = () => html`
+export const about = () => html`
     <div>
         This is about
     </div>

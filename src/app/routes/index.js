@@ -1,9 +1,9 @@
 import { render } from 'lit-html'
 
-import { home } from '../pages/home'
-import { dashboard } from '../pages/dashboard'
-import { history } from '../pages/history'
-import { about } from '../pages/about'
+import { home } from 'app/views/pages/Home'
+import { dashboard } from 'app/views/pages/Dashboard'
+import { history } from 'app/views/pages/History'
+import { about } from 'app/views/pages/About'
 
 const routes = {
     '/': home(),
