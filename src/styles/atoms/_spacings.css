@@ -1,0 +1,19 @@
+/* Margin Bottom */
+.mb-15 {
+  margin-bottom: 0.75rem;
+}
+
+/* Padding Vertical */
+.pv-15 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+/* Padding Horizontal */
+.pl-20 {
+  padding-left: 1rem;
+}
+
+.pr-35 {
+  padding-right: 1.75rem;
+}
