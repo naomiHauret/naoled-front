@@ -2,11 +2,15 @@
 import { Scene, Color3, FreeCamera, Vector3, Color4, MeshBuilder, Mesh, HemisphericLight, PointLight, StandardMaterial, ShadowGenerator } from 'babylonjs'
 import { createCity } from 'app/City'
 import { createCrust, addCrustSlice } from 'app/Crust'
+import upgradeMesh from 'app/Subdivide'
+
+import waterFragmentShader from 'app/shaders/water/fragment.glsl'
+import waterVertexShader from 'app/shaders/water/vertex.glsl'
 
 export const createScene = (engine, canvas, size) => {
+    upgradeMesh()
     const scene = new Scene(engine)
     scene.clearColor = new Color4(0, 0, 0, 0)
-
 
     // Camera
     // const camera = new FreeCamera("camera", new Vector3(-95, 40, -105), scene)
@@ -22,29 +26,38 @@ export const createScene = (engine, canvas, size) => {
     const light2 = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(60, -600, 200), scene)
     light2.intensity = 1
 
-    // Materials
-    // - water
-    const materialWater = new StandardMaterial('materialWater', scene)
-    materialWater.diffuseColor = Color3.Blue()
-    materialWater.emissiveColor = new Color3(0.0, 0.5, 0.75)
-    materialWater.alpha = 0.75
-
     ////
     //  MESHES
     ////
     const group = Mesh.CreateBox("naoLED", 1, scene)
-
+    
     // City
     const city = createCity(scene)
     city.parent = group
     city.position.y = 6
-
+    
     // CRUST
     const crust = createCrust(scene, size)
-    const waterCrust = addCrustSlice(scene, "water", 1.5, size + 15, size + 15, -4.75)
+    const waterCrust = addCrustSlice(scene, "water", 4.5, size + 15, size + 15, -3.75)
     waterCrust.parent = crust
-    waterCrust.material = materialWater
-  
+    
+    // Materials
+    // - water
+    BABYLON.Effect.ShadersStore["customVertexShader"] = waterVertexShader
+    BABYLON.Effect.ShadersStore["customFragmentShader"] = waterFragmentShader
+    
+    var shaderMaterial = new BABYLON.ShaderMaterial("shader", scene, {
+      vertex: "custom",
+      fragment: "custom",
+    },
+    {
+      needAlphaBlending : true,
+      attributes: ["position", "normal", "uv"],
+      uniforms: ["world", "worldView", "worldViewProjection", "view", "projection"]
+    })
+
+    waterCrust.material = shaderMaterial
+    
     crust.parent = group
     
     const shadowGenerator = new ShadowGenerator(1024, light2)
@@ -79,7 +92,12 @@ export const createScene = (engine, canvas, size) => {
     // Pour passer en mode REEEEED
     // postProcess2.vignetteEnabled = true
 
-  
+    let time = 0.
+    scene.registerBeforeRender(function() {
+        waterCrust.material.setFloat("time", time)
+        time +=0.1        
+    })
+
     return scene
   }
 

@@ -42,5 +42,6 @@ export const createCrust = (scene, size) => {
 export const addCrustSlice = (scene, name, height, width, depth, y) => {
   const crust = MeshBuilder.CreateBox(name, { height: height, width: width, depth: depth }, scene)
   crust.position.y = y
+  crust.increaseFacets(200)
   return crust
 }
