@@ -1,11 +1,10 @@
-
-import { ParticleSystem, Texture, Vector3, Color4 } from 'babylonjs'
+import { ParticleSystem, Texture, Vector3, Color4 } from "babylonjs"
 
 export const createFire = (name, scene) => {
   const particleSystem = new ParticleSystem(name, 2000, scene) // Create a particle system
-  particleSystem.particleTexture = new Texture(require('./../../../../assets/textures/flame.png'), scene) //Texture of each particle
-  particleSystem.minEmitBox = new Vector3(.5, 0, .5)
-  particleSystem.maxEmitBox = new Vector3(-.5, 0, -.5)
+  particleSystem.particleTexture = new Texture(require("./../../../../assets/textures/flame.png"), scene) //Texture of each particle
+  particleSystem.minEmitBox = new Vector3(0.5, 0, 0.5)
+  particleSystem.maxEmitBox = new Vector3(-0.5, 0, -0.5)
 
   // Colors of all particles
   particleSystem.color1 = new Color4(1, 0.05, 0, 1)
@@ -18,12 +17,12 @@ export const createFire = (name, scene) => {
   particleSystem.maxSize = 3
 
   // Life time of each particle (random between...
-  particleSystem.minLifeTime = .4
-  particleSystem.maxLifeTime = .5
+  particleSystem.minLifeTime = 0.4
+  particleSystem.maxLifeTime = 0.5
 
   particleSystem.emitRate = 1000 // Emission rate
-  particleSystem.blendMode = ParticleSystem.BLENDMODE_MULTIPLYADD   // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
-  particleSystem.gravity = new Vector3(0, 29.81, 0)   // Set the gravity of all particles
+  particleSystem.blendMode = ParticleSystem.BLENDMODE_MULTIPLYADD // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
+  particleSystem.gravity = new Vector3(0, 29.81, 0) // Set the gravity of all particles
 
   // Direction of each particle after it has been emitted
   particleSystem.direction1 = new Vector3(3, 6, -3)
@@ -42,5 +41,3 @@ export const createFire = (name, scene) => {
 
   return particleSystem
 }
-
-
