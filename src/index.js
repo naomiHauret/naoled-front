@@ -1,13 +1,13 @@
-import './index.css'
+import "./index.css"
 import io from "socket.io-client"
 import { Engine } from 'babylonjs'
-import { createScene } from 'app/Scene'
-import { navigate } from 'routes'
+import { navigate } from 'app/routes'
+import { createScene } from 'app/views/3d/Scene'
 
-const url = process.env.NODE_ENV === 'production' ? process.env.SOCKET_URL_PROD : process.env.SOCKET_URL_DEV
+const url = process.env.NODE_ENV === "production" ? process.env.SOCKET_URL_PROD : process.env.SOCKET_URL_DEV
 const socket = io(url)
 
-socket.on('event', e => {
+socket.on("event", (e) => {
   console.log(e)
 })
 
@@ -22,11 +22,8 @@ window.addEventListener('DOMContentLoaded', () => {
     engine.runRenderLoop(() => {
       scene.render()
     })
-
     window.addEventListener('resize', () => {
       engine.resize()
     })
   }
 })
-
-

@@ -10,6 +10,9 @@
     "dev:wds": "npx webpack-dev-server --open --port 3000 --content-base dist --history-api-fallback --watch-content-base --config webpack.dev.js",
     "prod:wds": "npx webpack-dev-server --open --compress --port 3004 --content-base dist --history-api-fallback --watch-content-base --config webpack.dev.js",
     "dev": "npm run dev:build && npm run dev:wds",
+    "js:prettify": "npx prettier --parser=babylon --write \"src/**/*.{js,jsx}\"",
+    "css:prettify": "npx prettier --parser=css --write \"src/**/*.css\"",
+    "format": "npm run css:prettify && npm run js:prettify",
     "prod": "npm run prod:build && npm run prod:wds",
     "deploy": "npm run prod:build && npx surge --domain naoled.surge.sh",
     "prod:deploy": "npx surge --domain naoled.surge.sh"
@@ -23,7 +26,10 @@
     "css-loader": "^1.0.1",
     "dotenv-webpack": "^1.5.7",
     "file-loader": "^2.0.0",
+    "glsl-shader-loader": "^0.1.6",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^1.2.0",
+    "lint-staged": "^8.1.0",
     "mini-css-extract-plugin": "^0.4.5",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-easy-import": "^3.0.0",
@@ -50,5 +56,14 @@
     "not op_mob <= 37",
     "not samsung <= 7",
     "not op_mini all"
-  ]
+  ],
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "npx prettier --parser=babylon --write \"src/**/*.js\""
+    ],
+    "src/**/*.css": [
+      "npx prettier --parser=css --write \"src/**/*.css\"",
+      "git add"
+    ]
+  }
 }

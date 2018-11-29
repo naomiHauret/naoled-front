@@ -1,0 +1,47 @@
+:root {
+  --white: #ffffff;
+  --black: #26273B;
+  --greyDark: #454560;
+  --greyLight: #D6D6E1;
+  --greyLightest: #F0F0F5;
+  --grey: #ACADC1;
+  --negative: #FD4D67;
+  --positive: #00CFAE;
+  --primary: #8D57FF;
+}
+
+/* Texts */
+.text-black {
+  color: var(--black);
+}
+
+.text-greyDark {
+  color: var(--greyDark);
+}
+
+.text-grey {
+  color: var(--grey);
+}
+
+.text-greyLight {
+  color: var(--greyLight);
+}
+
+.text-positive {
+  color: var(--positive);
+}
+
+.text-negative {
+  color: var(--negative);
+}
+
+
+/* Backgrounds */
+
+.bg-greyLightest {
+  background-color: var(--greyLightest);
+}
+
+.bg-white {
+  background-color: var(--white);
+}
