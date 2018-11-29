@@ -20,7 +20,7 @@ import {
   Animation,
 } from "babylonjs"
 import { createCity } from "app/views/3d/City"
-import { createFire } from "app/views/3d/Scene/effects"
+import { createFire, createSmoke } from "app/views/3d/Scene/effects"
 import { createCrust, addCrustSlice } from "app/views/3d/Crust"
 import upgradeMesh from "app/views/3d/Subdivide"
 
@@ -191,6 +191,9 @@ export const createScene = (engine, canvas, size) => {
 
   const fire2 = createFire("fire2", scene)
   fire2.emitter = new Vector3(16, 20, 0.5)
+
+  const smoke1 = createSmoke("smoke1", scene, "sky")
+  smoke1.emitter = new Vector3(20, 35, 0.5)
 
   return scene
 }
