@@ -1,6 +1,6 @@
 import { html } from 'lit-html'
 
-export let dashboard = () => html`
+export const dashboard = () => html`
     <div>
         This is dashboard
     </div>

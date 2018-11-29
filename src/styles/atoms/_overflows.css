@@ -1,0 +1,10 @@
+.overflow-x-visible {
+  overflow-x: visible;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+}

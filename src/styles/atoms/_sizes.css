@@ -16,3 +16,8 @@
 .minh-100vh {
   min-height: 100vh;
 }
+
+/* Max heights */
+.maxh-80vh {
+  max-height: 80vh;
+}

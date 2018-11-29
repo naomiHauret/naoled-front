@@ -1,0 +1,50 @@
+/*
+  Margin horizontal
+*/
+.mnh-20 {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+/* Margin Vertical */
+.mt-15 {
+  margin-top: 0.75rem;
+}
+
+.mb-15 {
+  margin-bottom: 0.75rem;
+}
+
+.mb-45 {
+  margin-bottom: 2.25rem;
+}
+
+.mt-auto {
+  margin-top: auto;
+}
+
+/* Padding Vertical */
+.pv-15 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+/* Padding Horizontal */
+.ph-20 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.pl-20 {
+  padding-left: 1rem;
+}
+
+.pr-35 {
+  padding-right: 1.75rem;
+}
+
+/* Padding all */
+
+.pa-45 {
+  padding: 2.25rem;
+}
