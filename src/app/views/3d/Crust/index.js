@@ -1,11 +1,11 @@
-import { MeshBuilder, Mesh } from 'babylonjs'
+import { MeshBuilder, Mesh, PBRMetallicRoughnessMaterial, Color3 } from "babylonjs"
 
 export const createCrust = (scene, size) => {
   // Group
   const crustGroup = Mesh.CreateBox("crustGroup", 1, scene)
 
-  const pbr = new BABYLON.PBRMetallicRoughnessMaterial("pbr", scene)
-  pbr.baseColor = new BABYLON.Color3(1.000, 1.000, 1.000)
+  const pbr = new PBRMetallicRoughnessMaterial("pbr", scene)
+  pbr.baseColor = new Color3(1.0, 1.0, 1.0)
   pbr.metallic = 0
   pbr.roughness = 1.0
 
@@ -28,7 +28,6 @@ export const createCrust = (scene, size) => {
   earthCrust3.position.y = -2.5
   earthCrust3.receiveShadows = true
   earthCrust3.material = pbr
-
 
   const earthCrust4 = MeshBuilder.CreateBox("earth3", { height: 1, width: size, depth: size }, scene)
   earthCrust4.parent = crustGroup
