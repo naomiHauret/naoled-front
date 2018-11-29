@@ -1,9 +1,8 @@
 import { MeshBuilder, Mesh, Vector3, Color3, StandardMaterial, PBRMetallicRoughnessMaterial } from "babylonjs"
 
 export const createCity = (scene) => {
-
   const buildingMaterial = new PBRMetallicRoughnessMaterial("pbr", scene)
-  buildingMaterial.baseColor = new Color3(1.000, 1.000, 1.000)
+  buildingMaterial.baseColor = new Color3(1.0, 1.0, 1.0)
   buildingMaterial.metallic = 0
   buildingMaterial.roughness = 1.0
 

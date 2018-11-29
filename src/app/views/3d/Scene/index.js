@@ -1,8 +1,9 @@
-
 import {
   FxaaPostProcess,
   LensRenderingPipeline,
   ShaderMaterial,
+  ParticleSystem,
+  Texture,
   Scene,
   Effect,
   ImageProcessingPostProcess,
@@ -16,102 +17,112 @@ import {
   DirectionalLight,
   StandardMaterial,
   ShadowGenerator,
-  Animation
-} from 'babylonjs'
-import { createCity } from 'app/views/3d/City'
-import { createCrust, addCrustSlice } from 'app/views/3d/Crust'
-import upgradeMesh from 'app/views/3d/Subdivide'
+  Animation,
+} from "babylonjs"
+import { createCity } from "app/views/3d/City"
+import { createFire } from "app/views/3d/Scene/effects"
+import { createCrust, addCrustSlice } from "app/views/3d/Crust"
+import upgradeMesh from "app/views/3d/Subdivide"
 
-import waterFragmentShader from 'app/views/3d/shaders/water/fragment.glsl'
-import waterVertexShader from 'app/views/3d/shaders/water/vertex.glsl'
+import waterFragmentShader from "app/views/3d/shaders/water/fragment.glsl"
+import waterVertexShader from "app/views/3d/shaders/water/vertex.glsl"
 
 export const createScene = (engine, canvas, size) => {
-    upgradeMesh()
-    const scene = new Scene(engine)
-    scene.clearColor = new Color4(0, 0, 0, 0)
+  upgradeMesh()
+  const scene = new Scene(engine)
+  scene.clearColor = new Color4(0, 0, 0, 0)
 
-    // Camera
-    const camera = new ArcRotateCamera("camera", 5, -20, 150, Vector3(0, 0, 0), scene)
-    camera.setPosition(new Vector3(-105, 50, -105))
-    // Light
-    const light1 = new HemisphericLight("light1", new Vector3(0, 1, 0), scene)
-    light1.intensity = 0.8
+  // Camera
+  const camera = new ArcRotateCamera("camera", 5, -20, 150, Vector3(0, 0, 0), scene)
+  camera.setPosition(new Vector3(-105, 50, -105))
+  // Light
+  const light1 = new HemisphericLight("light1", new Vector3(0, 1, 0), scene)
+  light1.intensity = 0.8
 
-    const light2 = new DirectionalLight("DirectionalLight", new Vector3(60, -600, 200), scene)
-    light2.intensity = 1
+  const light2 = new DirectionalLight("DirectionalLight", new Vector3(60, -600, 200), scene)
+  light2.intensity = 1
 
-    ////
-    //  MESHES
-    ////
-    const group = Mesh.CreateBox("naoLED", 1, scene)
+  ////
+  //  MESHES
+  ////
+  const group = Mesh.CreateBox("naoLED", 1, scene)
 
-    // City
-    const city = createCity(scene)
-    city.parent = group
-    city.position.y = 6
+  // camera.attachControl(canvas, scene)
 
-    // CRUST
-    const crust = createCrust(scene, size)
-    const waterCrust = addCrustSlice(scene, "water", 4.5, size + 15, size + 15, -3.75)
-    waterCrust.parent = crust
+  // City
+  const city = createCity(scene)
+  city.parent = group
+  city.position.y = 6
 
-    // Materials
-    // - water
-    Effect.ShadersStore["customVertexShader"] = waterVertexShader
-    Effect.ShadersStore["customFragmentShader"] = waterFragmentShader
+  // CRUST
+  const crust = createCrust(scene, size)
+  const waterCrust = addCrustSlice(scene, "water", 4.5, size + 15, size + 15, -3.75)
+  waterCrust.parent = crust
 
-    const shaderMaterial = new ShaderMaterial("shader", scene, {
+  // Materials
+  // - water
+  Effect.ShadersStore["customVertexShader"] = waterVertexShader
+  Effect.ShadersStore["customFragmentShader"] = waterFragmentShader
+
+  const shaderMaterial = new ShaderMaterial(
+    "shader",
+    scene,
+    {
       vertex: "custom",
       fragment: "custom",
     },
     {
-      needAlphaBlending : true,
+      needAlphaBlending: true,
       attributes: ["position", "normal", "uv"],
-      uniforms: ["world", "worldView", "worldViewProjection", "view", "projection"]
-    })
+      uniforms: ["world", "worldView", "worldViewProjection", "view", "projection"],
+    },
+  )
 
-    waterCrust.material = shaderMaterial
+  waterCrust.material = shaderMaterial
 
-    crust.parent = group
+  crust.parent = group
 
-    const shadowGenerator = new ShadowGenerator(1024, light2)
+  const shadowGenerator = new ShadowGenerator(1024, light2)
 
-    city._children[1]._children.forEach(element => {
-      shadowGenerator.getShadowMap().renderList.push(element)
-    })
+  city._children[1]._children.forEach((element) => {
+    shadowGenerator.getShadowMap().renderList.push(element)
+  })
 
+  shadowGenerator.forceBackFacesOnly = true
+  shadowGenerator.usePoissonSampling = true
 
-    shadowGenerator.forceBackFacesOnly = true
-    shadowGenerator.usePoissonSampling = true
-
-
-    const lensEffect = new LensRenderingPipeline('lens', {
+  const lensEffect = new LensRenderingPipeline(
+    "lens",
+    {
       edge_blur: 0,
       chromatic_aberration: 0.0,
       distortion: 0,
       dof_focus_distance: 50,
-      dof_aperture: 3.0,			// set this very high for tilt-shift effect
+      dof_aperture: 3.0, // set this very high for tilt-shift effect
       grain_amount: 1.0,
       dof_pentagon: false,
       dof_threshold: 1.0,
-      dof_darken: 0
-    }, scene, 1.0, camera)
+      dof_darken: 0,
+    },
+    scene,
+    1.0,
+    camera,
+  )
 
-    const postProcess = new FxaaPostProcess("fxaa", 1.0, camera)
-    const postProcess2 = new ImageProcessingPostProcess("processing", 1.0, camera)
-    postProcess2.vignetteWeight = 10
-    postProcess2.vignetteStretch = 2
-    postProcess2.vignetteColor = new Color4(1, 0, 0, 0)
+  const postProcess = new FxaaPostProcess("fxaa", 1.0, camera)
+  const postProcess2 = new ImageProcessingPostProcess("processing", 1.0, camera)
+  postProcess2.vignetteWeight = 10
+  postProcess2.vignetteStretch = 2
+  postProcess2.vignetteColor = new Color4(1, 0, 0, 0)
 
-    // Pour passer en mode REEEEED
-    // postProcess2.vignetteEnabled = true
+  // Pour passer en mode REEEEED
+  // postProcess2.vignetteEnabled = true
 
-    let time = 0.
-    scene.registerBeforeRender(()  => {
-        waterCrust.material.setFloat("time", time)
-        time +=0.1
-    })
-
+  let time = 0
+  scene.registerBeforeRender(() => {
+    waterCrust.material.setFloat("time", time)
+    time += 0.1
+  })
 
   camera.setTarget(group)
   ////
@@ -174,7 +185,12 @@ export const createScene = (engine, canvas, size) => {
   moveCamForwardAnimation.setKeys(moveCamForwardAnimationKeys1)
   scene.beginDirectAnimation(camera, [rotateCamAnimation, moveCamForwardAnimation], 0, 25 * frameRate, true, 1)
 
-    return scene
-  }
+  // BABYLON ON FIREEEE
+  const fire1 = createFire("fire1", scene)
+  fire1.emitter = new Vector3(6, 25, 0.5)
 
+  const fire2 = createFire("fire2", scene)
+  fire2.emitter = new Vector3(16, 20, 0.5)
 
+  return scene
+}
