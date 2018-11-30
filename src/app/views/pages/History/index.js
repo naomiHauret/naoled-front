@@ -1,5 +1,9 @@
-import { html } from "lit-html"
+import { h } from "hyperapp"
+import Layout from "app/views/components/Layout"
 
-export const history = () => html`
-  <div>This is history</div>
-`
+export default () => (state, actions) => {
+  return <Layout>
+    <div>This is history</div>
+  </Layout>
+}
+

@@ -20,6 +20,10 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/plugin-transform-react-jsx": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "babel-loader": "^8.0.4",
     "brotli-webpack-plugin": "^1.0.0",
     "copy-webpack-plugin": "^4.6.0",
     "cross-env": "^5.2.0",
@@ -42,9 +46,11 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
+    "@hyperapp/router": "^0.7.0",
     "babylonjs": "^3.3.0",
     "browserslist": "^4.3.4",
     "lit-html": "^0.13.0",
+    "hyperapp": "^1.2.6",
     "socket.io-client": "^2.1.1"
   },
   "browserslist": [
