@@ -3,7 +3,7 @@ import Layout from "app/views/components/Layout"
 
 export default () => (state, actions) => {
   return (
-    <Layout>
+    <Layout state={state} actions={actions}>
       <div>This is history</div>
     </Layout>
   )
