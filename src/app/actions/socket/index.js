@@ -4,6 +4,9 @@ const socket = io(url)
 
 export default {
   listen: () => (state, actions) => {
+    // Data returned by socket will update our state
+    // and state will update our view
+
     socket.on("event", (data) => {
       console.log("whassup bro", data)
     })
