@@ -8,10 +8,10 @@ import History from "app/views/pages/History"
 export default ({ state, actions, match }) => {
   return (
     <Switch>
-      <Route render={Home} path={'/'} />
-      <Route render={About} path={'/about'} />
-      <Route render={Dashboard} path={'/dashboard'} />
-      <Route render={History} path={'/history'} />
+      <Route render={Home} path={"/"} />
+      <Route render={About} path={"/about"} />
+      <Route render={Dashboard} path={"/dashboard"} />
+      <Route render={History} path={"/history"} />
     </Switch>
   )
 }
