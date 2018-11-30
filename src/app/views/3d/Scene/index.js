@@ -167,7 +167,8 @@ export const createScene = (engine, canvas, size) => {
   const smoke1 = createSmoke("smoke1", scene, "sky")
   smoke1.emitter = new Vector3(20, 35, 0.5)
 
-  const trashPack1 = createTrash("trash1", scene, 20)
+  // Example add trash
+  // const trashPack1 = createTrash("trash1", scene, 20)
 
   // Example setNote for water
   // setTimeout(() => {
