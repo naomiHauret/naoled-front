@@ -43,10 +43,8 @@ export const createFire = (name, scene) => {
 
 export const createSmoke = (name, scene, origin) => {
   // Particle system
-  const smoke = ParticleHelper.CreateDefault(new Vector3.Zero, 2000)
-  const smokeCloud = origin === 'floor'
-    ? smoke.createConeEmitter(0.6, 1)
-    : smoke.createHemisphericEmitter(0.6, 1)
+  const smoke = ParticleHelper.CreateDefault(new Vector3.Zero(), 2000)
+  const smokeCloud = origin === "floor" ? smoke.createConeEmitter(0.6, 1) : smoke.createHemisphericEmitter(0.6, 1)
   smoke.emitRate = 20
 
   // Size
