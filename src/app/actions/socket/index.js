@@ -4,6 +4,10 @@ const socket = io(url)
 
 export default {
   listen: () => (state, actions) => {
+    socket.on("event", (data) => {
+      console.log(data)
+    })
+
     socket.on("ashbinAdd", (data) => {
       console.log("ashbinAdd", data)
     })
