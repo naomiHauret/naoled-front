@@ -18,6 +18,9 @@ import {
   StandardMaterial,
   ShadowGenerator,
   Animation,
+  QuinticEase,
+  QuarticEase,
+  EasingFunction
 } from "babylonjs"
 import { createCity } from "app/views/3d/City"
 import { createFire, createSmoke, createTrash } from "app/views/3d/Scene/effects"
@@ -31,7 +34,7 @@ export const createScene = (engine, canvas, size) => {
   scene.clearColor = new Color4(0, 0, 0, 0)
 
   // Camera
-  const camera = new ArcRotateCamera("camera", 5, -20, 150, Vector3(0, 0, 0), scene)
+  const camera = new ArcRotateCamera("camera", 105, 50, -105, Vector3(105, 50, -105), scene)
   camera.setPosition(new Vector3(-105, 50, -105))
   // Light
   const light1 = new HemisphericLight("light1", new Vector3(0, 1, 0), scene)
@@ -114,15 +117,15 @@ export const createScene = (engine, canvas, size) => {
     },
     {
       frame: 3 * frameRate,
-      value: 0.85,
+      value: -0.85,
     },
     {
       frame: 15 * frameRate,
-      value: 1.5,
+      value: -1.5,
     },
     {
       frame: 25 * frameRate,
-      value: 1.5,
+      value: -1.5,
     },
   ]
   rotateCamAnimation.setKeys(rotateCamAnimationKeys1)
@@ -154,6 +157,14 @@ export const createScene = (engine, canvas, size) => {
   ]
 
   moveCamForwardAnimation.setKeys(moveCamForwardAnimationKeys1)
+  const moveCamEasingFunction = new QuinticEase()
+  const rotateCamEasingFunction = new QuarticEase()
+  moveCamEasingFunction.setEasingMode(EasingFunction.EASINGMODE_EASEINOUT)
+  rotateCamEasingFunction.setEasingMode(EasingFunction.EASINGMODE_EASEINOUT)
+  rotateCamAnimation.setEasingFunction(rotateCamEasingFunction)
+  moveCamForwardAnimation.setEasingFunction(moveCamEasingFunction)
+
+
   scene.beginDirectAnimation(camera, [rotateCamAnimation, moveCamForwardAnimation], 0, 25 * frameRate, true, 1)
   camera.attachControl(canvas, scene)
 
