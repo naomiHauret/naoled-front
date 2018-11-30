@@ -25,17 +25,17 @@ window.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("resize", () => {
       engine.resize()
     })
+
+    socket.on("ashbinAdd", (data) => {
+      console.log("ashbinAdd", data)
+    })
+
+    socket.on("trashIn", (data) => {
+      console.log("trashIn", data)
+    })
+
+    socket.on("trashOut", (data) => {
+      console.log("trashOut", data)
+    })
   }
 })
-
-// io.on('ashbinAdd', data => {
-//   console.log('ashbinAdd', data);
-// })
-
-// io.on('trashIn', data => {
-//   console.log('trashIn', data);
-// })
-
-// io.on('trashOut', data => {
-//   console.log('trashOut', data);
-// })
