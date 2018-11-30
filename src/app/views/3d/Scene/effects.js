@@ -1,7 +1,7 @@
 import { ParticleSystem, ParticleHelper, Texture, Vector3, Color4, SpriteManager, Sprite } from "babylonjs"
-import flameTexture from 'assets/textures/flame.png'
-import smokeTexture from 'assets/textures/smoke.png'
-import trashTexture from 'assets/textures/trash.png'
+import flameTexture from "assets/textures/flame.png"
+import smokeTexture from "assets/textures/smoke.png"
+import trashTexture from "assets/textures/trash.png"
 
 export const createFire = (name, scene) => {
   const fire = new ParticleSystem(name, 2000, scene) // Create a particle system
@@ -88,10 +88,9 @@ export const createSmoke = (name, scene, origin) => {
   return smoke
 }
 
-
 export const createTrash = (name, scene, number) => {
   // Parameters : name, imgUrl, capacity, cellSize, scene
-  let trashBagsPack = new SpriteManager(name, "https://i.ibb.co/mqPWq4c/trasssssh.png", number, 800, scene)  // Sprite manager to optimize GPU ressources
+  let trashBagsPack = new SpriteManager(name, "https://i.ibb.co/mqPWq4c/trasssssh.png", number, 800, scene) // Sprite manager to optimize GPU ressources
 
   for (let i = 0; i < 2000; i++) {
     let trash = new Sprite("trash", trashBagsPack)
