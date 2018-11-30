@@ -1,4 +1,4 @@
-import { MeshBuilder, Mesh, Vector3, Color3, StandardMaterial, PBRMetallicRoughnessMaterial } from "babylonjs"
+import { MeshBuilder, Mesh, Vector3, Color3, PBRMetallicRoughnessMaterial } from "babylonjs"
 
 export const createCity = (scene) => {
   const buildingMaterial = new PBRMetallicRoughnessMaterial("pbr", scene)
