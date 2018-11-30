@@ -20,7 +20,7 @@ import {
   Animation,
   QuinticEase,
   QuarticEase,
-  EasingFunction
+  EasingFunction,
 } from "babylonjs"
 import { createCity } from "app/views/3d/City"
 import { createFire, createSmoke, createTrash } from "app/views/3d/Scene/effects"
@@ -163,7 +163,6 @@ export const createScene = (engine, canvas, size) => {
   rotateCamEasingFunction.setEasingMode(EasingFunction.EASINGMODE_EASEINOUT)
   rotateCamAnimation.setEasingFunction(rotateCamEasingFunction)
   moveCamForwardAnimation.setEasingFunction(moveCamEasingFunction)
-
 
   scene.beginDirectAnimation(camera, [rotateCamAnimation, moveCamForwardAnimation], 0, 25 * frameRate, true, 1)
   camera.attachControl(canvas, scene)
