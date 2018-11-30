@@ -1,5 +1,5 @@
 import "./index.css"
-import io from "socket.io-client"
+import socket from "socket.io-client"
 import { Engine } from "babylonjs"
 import { navigate } from "app/routes"
 import { createScene } from "app/views/3d/Scene"
@@ -25,17 +25,17 @@ window.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("resize", () => {
       engine.resize()
     })
+
+    socket.on('ashbinAdd', data => {
+      console.log('ashbinAdd', data)
+    })
+
+    socket.on('trashIn', data => {
+      console.log('trashIn', data)
+    })
+
+    socket.on('trashOut', data => {
+      console.log('trashOut', data)
+    })
   }
 })
-
-// io.on('ashbinAdd', data => {
-//   console.log('ashbinAdd', data);
-// })
-
-// io.on('trashIn', data => {
-//   console.log('trashIn', data);
-// })
-
-// io.on('trashOut', data => {
-//   console.log('trashOut', data);
-// })
