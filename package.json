@@ -15,7 +15,9 @@
     "format": "npm run css:prettify && npm run js:prettify",
     "prod": "npm run prod:build && npm run prod:wds",
     "deploy": "npm run prod:build && npx surge --domain naoled.surge.sh",
+    "preprod:deploy": "npm run prod:build && npx surge --domain preprod-naoled.surge.sh",
     "prod:deploy": "npx surge --domain naoled.surge.sh"
+
   },
   "author": "",
   "license": "MIT",
