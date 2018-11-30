@@ -37,5 +37,14 @@ window.addEventListener("DOMContentLoaded", () => {
     socket.on("trashOut", (data) => {
       console.log("trashOut", data)
     })
+
+    socket.on("openDoor", (data) => {
+      console.log("openDoor", data)
+    })
+
+
+    socket.on("closeDoor", (data) => {
+      console.log("closeDoor", data)
+    })
   }
 })
