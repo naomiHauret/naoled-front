@@ -42,9 +42,20 @@ window.addEventListener("DOMContentLoaded", () => {
       console.log("openDoor", data)
     })
 
-
     socket.on("closeDoor", (data) => {
       console.log("closeDoor", data)
+    })
+
+    socket.on("switchLightOn", (data) => {
+      console.log("Light switched on", data)
+    })
+
+    socket.on("switchLightOff", (data) => {
+      console.log("Light switched off", data)
+    })
+
+    socket.on("stairsAdd", (data) => {
+      console.log("Stairs triggered", data)
     })
   }
 })
