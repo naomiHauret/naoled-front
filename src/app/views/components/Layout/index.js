@@ -1,27 +1,12 @@
 import { h } from "hyperapp"
-import io from "socket.io-client"
 import { Link } from "@hyperapp/router"
 
 export default (props, children) => {
   const { state, actions, key } = props
-  const url = process.env.NODE_ENV === "production" ? process.env.SOCKET_URL_PROD : process.env.SOCKET_URL_DEV
-  const socket = io(url)
-
+  const { listen } = actions
   return (
     <div
-      oncreate={() => {
-        socket.on("ashbinAdd", (data) => {
-          console.log("ashbinAdd", data)
-        })
-
-        socket.on("trashIn", (data) => {
-          console.log("trashIn", data)
-        })
-
-        socket.on("trashOut", (data) => {
-          console.log("trashOut", data)
-        })
-      }}
+      oncreate={() => listen}
     >
       <header>
         <Link to="/" title="Naoled">
