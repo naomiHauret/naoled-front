@@ -33,6 +33,12 @@ module.exports = {
   },
   module: {
     rules: [
+      // JS
+      {
+        test: /\.js$/,
+        exclude: exludedFolders,
+        use: "babel-loader",
+      },
       // CSS
       {
         test: /src(\/|\\).*\.css$/,
@@ -63,9 +69,9 @@ module.exports = {
       {
         test: /\.(frag|vert|glsl)$/,
         use: [
-          { 
+          {
             loader: 'glsl-shader-loader',
-            options: {}  
+            options: {}
           }
         ]
       }
