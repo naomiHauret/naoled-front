@@ -8,7 +8,7 @@ const state = {
   location: location.state,
 }
 
-const bodyTag = document.querySelector('body')
+const bodyTag = document.querySelector("body")
 const enhancedActions = Object.assign({}, { location: location.actions }, actions)
 const view = (state, actions) => <App state={state} actions={enhancedActions} />
 const main = app(state, enhancedActions, view, bodyTag)
