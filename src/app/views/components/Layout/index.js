@@ -6,7 +6,7 @@ export default (props, children) => {
   const { listen } = actions
   return (
     <div
-      oncreate={() => listen}
+      oncreate={listen}
     >
       <header>
         <Link to="/" title="Naoled">
