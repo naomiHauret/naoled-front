@@ -22,10 +22,8 @@ import {
 import { createCity } from "app/views/3d/City"
 import { createFire, createSmoke } from "app/views/3d/Scene/effects"
 import { createCrust, addCrustSlice } from "app/views/3d/Crust"
+import { createWater, waterSetNote } from "app/views/3d/Water"
 import upgradeMesh from "app/views/3d/Subdivide"
-
-import waterFragmentShader from "app/views/3d/shaders/water/fragment.glsl"
-import waterVertexShader from "app/views/3d/shaders/water/vertex.glsl"
 
 export const createScene = (engine, canvas, size) => {
   upgradeMesh()
@@ -56,29 +54,10 @@ export const createScene = (engine, canvas, size) => {
 
   // CRUST
   const crust = createCrust(scene, size)
-  const waterCrust = addCrustSlice(scene, "water", 4.5, size + 15, size + 15, -3.75)
+
+  // Value between 0 and 1 for the global note (0 everything is fine, 1 is anarchy)
+  const waterCrust = createWater(scene, size, 0)
   waterCrust.parent = crust
-
-  // Materials
-  // - water
-  Effect.ShadersStore["customVertexShader"] = waterVertexShader
-  Effect.ShadersStore["customFragmentShader"] = waterFragmentShader
-
-  const shaderMaterial = new ShaderMaterial(
-    "shader",
-    scene,
-    {
-      vertex: "custom",
-      fragment: "custom",
-    },
-    {
-      needAlphaBlending: true,
-      attributes: ["position", "normal", "uv"],
-      uniforms: ["world", "worldView", "worldViewProjection", "view", "projection"],
-    },
-  )
-
-  waterCrust.material = shaderMaterial
 
   crust.parent = group
 
@@ -117,12 +96,6 @@ export const createScene = (engine, canvas, size) => {
 
   // Pour passer en mode REEEEED
   // postProcess2.vignetteEnabled = true
-
-  let time = 0
-  scene.registerBeforeRender(() => {
-    waterCrust.material.setFloat("time", time)
-    time += 0.1
-  })
 
   camera.setTarget(group)
   ////
@@ -194,6 +167,13 @@ export const createScene = (engine, canvas, size) => {
 
   const smoke1 = createSmoke("smoke1", scene, "sky")
   smoke1.emitter = new Vector3(20, 35, 0.5)
+
+  // Example setNote for water
+  setTimeout(() => {
+    const newNote = 0.95
+    const oldNote = 0
+    // waterSetNote(waterCrust, newNote, oldNote, scene )
+  }, 5000);
 
   return scene
 }
