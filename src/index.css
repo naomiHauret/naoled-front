@@ -1,5 +1,6 @@
 @import "./styles/typographies/**/*.css";
 @import "./styles/atoms/**/*.css";
+@import "./styles/components/**/*.css";
 
 *,
 *::before,

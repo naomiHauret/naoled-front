@@ -4,6 +4,8 @@ import actions from "app/actions"
 import App from "app/views"
 import "./index.css"
 
+import { semaine } from 'app/views/components/Chart'
+
 const state = {
   location: location.state,
 }
@@ -13,3 +15,8 @@ const enhancedActions = Object.assign({}, { location: location.actions }, action
 const view = (state, actions) => <App state={state} actions={enhancedActions} />
 const main = app(state, enhancedActions, view, bodyTag)
 const unsubscribe = location.subscribe(main.location)
+
+const ctx = document.getElementById('chart').getContext('2d')
+if(chart) {
+  var dashboardChart = semaine(ctx);
+}
