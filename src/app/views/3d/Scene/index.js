@@ -20,7 +20,7 @@ import {
   Animation,
 } from "babylonjs"
 import { createCity } from "app/views/3d/City"
-import { createFire, createSmoke } from "app/views/3d/Scene/effects"
+import { createFire, createSmoke, createTrash } from "app/views/3d/Scene/effects"
 import { createCrust, addCrustSlice } from "app/views/3d/Crust"
 import { createWater, waterSetNote } from "app/views/3d/Water"
 import upgradeMesh from "app/views/3d/Subdivide"
@@ -44,8 +44,6 @@ export const createScene = (engine, canvas, size) => {
   //  MESHES
   ////
   const group = Mesh.CreateBox("naoLED", 1, scene)
-
-  // camera.attachControl(canvas, scene)
 
   // City
   const city = createCity(scene)
@@ -157,6 +155,7 @@ export const createScene = (engine, canvas, size) => {
 
   moveCamForwardAnimation.setKeys(moveCamForwardAnimationKeys1)
   scene.beginDirectAnimation(camera, [rotateCamAnimation, moveCamForwardAnimation], 0, 25 * frameRate, true, 1)
+  camera.attachControl(canvas, scene)
 
   // BABYLON ON FIREEEE
   const fire1 = createFire("fire1", scene)
@@ -168,12 +167,14 @@ export const createScene = (engine, canvas, size) => {
   const smoke1 = createSmoke("smoke1", scene, "sky")
   smoke1.emitter = new Vector3(20, 35, 0.5)
 
+  const trashPack1 = createTrash("trash1", scene, 20)
+
   // Example setNote for water
-  setTimeout(() => {
-    const newNote = 0.95
-    const oldNote = 0
-    // waterSetNote(waterCrust, newNote, oldNote, scene )
-  }, 5000);
+  // setTimeout(() => {
+  //   const newNote = 0.95
+  //   const oldNote = 0
+  //   waterSetNote(waterCrust, newNote, oldNote, scene )
+  // }, 5000)
 
   return scene
 }

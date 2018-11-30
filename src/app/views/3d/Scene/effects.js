@@ -1,8 +1,11 @@
-import { ParticleSystem, ParticleHelper, Texture, Vector3, Color4 } from "babylonjs"
+import { ParticleSystem, ParticleHelper, Texture, Vector3, Color4, SpriteManager, Sprite } from "babylonjs"
+import flameTexture from 'assets/textures/flame.png'
+import smokeTexture from 'assets/textures/smoke.png'
+import trashTexture from 'assets/textures/trash.png'
 
 export const createFire = (name, scene) => {
   const fire = new ParticleSystem(name, 2000, scene) // Create a particle system
-  fire.particleTexture = new Texture(require("./../../../../assets/textures/flame.png"), scene) //Texture of each particle
+  fire.particleTexture = new Texture(flameTexture, scene) //Texture of each particle
   fire.minEmitBox = new Vector3(0.5, 0, 0.5)
   fire.maxEmitBox = new Vector3(-0.5, 0, -0.5)
 
@@ -71,7 +74,7 @@ export const createSmoke = (name, scene, origin) => {
 
   // Texture
   smoke.isAnimationSheetEnabled = true
-  smoke.particleTexture = new Texture("./../../../../assets/textures/smoke.png", scene)
+  smoke.particleTexture = new Texture(smokeTexture, scene)
   smoke.blendMode = ParticleSystem.BLENDMODE_MULTIPLY
   smoke.spriteCellWidth = 256
   smoke.spriteCellHeight = 256
@@ -83,4 +86,21 @@ export const createSmoke = (name, scene, origin) => {
   smoke.start(30)
 
   return smoke
+}
+
+
+export const createTrash = (name, scene, number) => {
+  // Parameters : name, imgUrl, capacity, cellSize, scene
+  let trashBagsPack = new SpriteManager(name, "https://i.ibb.co/mqPWq4c/trasssssh.png", number, 800, scene)  // Sprite manager to optimize GPU ressources
+
+  for (let i = 0; i < 2000; i++) {
+    let trash = new Sprite("trash", trashBagsPack)
+    trash.size = Math.floor(Math.random() * 25) + 15
+    trash.position.x = Math.floor(Math.random() * 50) + -25
+    trash.position.z = Math.floor(Math.random() * 35) + -25
+
+    trash.isPickable = false
+  }
+
+  return trashBagsPack
 }
