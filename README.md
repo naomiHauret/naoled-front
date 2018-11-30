@@ -1,3 +1,8 @@
+<p align="center"> 
+<img alt="NaoLED" src="https://i.ibb.co/H289Gvk/Capture-du-2018-11-30-13-30-56.png">
+</p>
+
+
 # NaoLED
 NaoLED is a a collaborative Arduino project @ECV Digital Nantes.
 [Front-end lives here](http://naoled.surge.sh), back-end is alive [@here](https://github.com/MaitreManuel/naoled-backend)
