@@ -5,9 +5,7 @@ export default (props, children) => {
   const { state, actions, key } = props
   const { listen } = actions
   return (
-    <div
-      oncreate={() => listen()}
-    >
+    <div oncreate={() => listen()}>
       <header>
         <Link to="/" title="Naoled">
           <svg width="287" height="153" fill="none" xmlns="http://www.w3.org/2000/svg">
