@@ -14,11 +14,11 @@ export const facts = [
   "Chaque année 2 millions d'enfants meurent prématurément à cause de la pollution. 🍼",
 ]
 
-const TRASH = "TRASH"
-const ASHBIN = "ASHBIN"
-const LIGHT = "LIGHT"
-const DOOR = "DOOR"
-const STAIRS = "STAIRS"
+export const TRASH = "TRASH"
+export const ASHBIN = "ASHBIN"
+export const LIGHT = "LIGHT"
+export const DOOR = "DOOR"
+export const STAIRS = "STAIRS"
 
 export const viewsId = [TRASH, ASHBIN, LIGHT, DOOR, STAIRS]
 export const views = {

@@ -8,7 +8,7 @@ const exludedFolders = [path.join(__dirname, "node_modules")]
 let plugins = [
   new Dotenv(),
   new CopyPlugin([
-    { from: "./src/assets/fonts", to: "./assets/fonts" },
+    { from: "./src/assets/fonts", to: "./assets/stylesheets/assets" },
   ]),
   new MiniCssExtractPlugin({
     filename: "assets/stylesheets/[name].[hash].css",

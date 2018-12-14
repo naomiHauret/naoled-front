@@ -1,0 +1,67 @@
+@import "toastr/build/toastr.css";
+
+:root {
+  --shadow: 0 0.2rem 0.4rem 0 rgba(0, 0, 0, 0.125), 0 0 0.4rem 0 rgba(0, 0, 0, 0.125);
+}
+
+/* Global */
+
+.toast {
+  background-color: var(--white);
+  font-family: inherit;
+}
+
+#toast-container > div {
+  border-radius: 0.6rem;
+  box-shadow: var(--shadow);
+  padding: 0.75rem;
+}
+
+#toast-container > div:hover {
+  box-shadow: var(--shadow);
+}
+
+#toast-container > .toast-info {
+  background-image: unset !important;
+}
+
+#toast-container > .toast-error {
+  background-image: unset !important;
+}
+
+#toast-container > .toast-success {
+  background-image: unset !important;
+}
+
+/* title */
+.toast-title {
+  display: none;
+}
+
+/* message */
+.toast-message {
+  color: var(--greyDark);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* progress bar */
+.toast-progress {
+  filter: none;
+  opacity: 1;
+  height: 0.3rem;
+  border-bottom-right-radius: 0.6rem;
+  border-top-right-radius: 0.6rem;
+}
+
+.toast .toast-progress {
+  background-color: var(--primary);
+}
+
+.toast-error .toast-progress {
+  background-color: var(--negative);
+}
+
+.toast-success .toast-progress {
+  background-color: var(--positive);
+}

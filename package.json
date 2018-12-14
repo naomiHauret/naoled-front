@@ -53,7 +53,8 @@
     "babylonjs": "^3.3.0",
     "browserslist": "^4.3.4",
     "hyperapp": "^1.2.6",
-    "socket.io-client": "^2.1.1"
+    "socket.io-client": "^2.1.1",
+    "toastr": "^2.1.4"
   },
   "browserslist": [
     "> 2%",
