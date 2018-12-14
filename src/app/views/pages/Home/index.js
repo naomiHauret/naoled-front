@@ -117,7 +117,7 @@ export default () => (state, actions) => {
               easing: "easeOutExpo",
             })
           }
-          class="mt-auto pa-45 bg-purple"
+          class="mt-auto"
         >
           <p class="fs-lg pa-0 text-grey">{facts[state.randomFact]}</p>
         </div>
