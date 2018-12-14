@@ -25,7 +25,7 @@ function formatSeconds(milliseconds, format) {
 export default (data) => {
   return (
     <div class="bg-white radius-lg fs-sm flex wrap justify-between shadow-base pl-20 pr-35 pv-15 mb-15">
-      <span class="text-greyDark fw-medium"> {formatSeconds(+data.data.time, "hh:mm")} </span>{" "}
+      <span class="text-greyDark fw-medium"> {formatSeconds(+data.data.doc.time, "hh:mm")} </span>{" "}
       <span class="text-grey"> {data.data.text} </span>
     </div>
   )
