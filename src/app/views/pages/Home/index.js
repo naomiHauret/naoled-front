@@ -5,41 +5,14 @@ import Layout from "app/views/components/Layout"
 import Event from "app/views/components/Event"
 import { render } from "lit-html"
 
-const events = [
-  {
-    id: 0,
-    time: "12:15",
-    title: "Hello, this is event",
-  },
-  {
-    id: 1,
-    time: "13:15",
-    title: "Hello, this is event 2",
-  },
-  {
-    id: 2,
-    time: "14:15",
-    title: "Hello, this is event 3",
-  },
-  {
-    id: 3,
-    time: "16:15",
-    title: "Hello, this is event 4",
-  },
-  {
-    id: 4,
-    time: "18:15",
-    title: "Hello, this is event 5",
-  },
-]
-
 export default () => (state, actions) => {
   const { renderCity } = actions
+  console.log(state.trashEvents)
   return (
     <Layout state={state} actions={actions}>
       <canvas
-        oncreate={(e) => {
-          renderCity(e)
+        oncreate={() => {
+          renderCity()
         }}
         class="w-75 h-100vh touch-none"
         id="render"
@@ -53,9 +26,10 @@ export default () => (state, actions) => {
           poubelle
         </p>
         <ul id="eventsList" class="maxh-80vh mnh-20 ph-20 overflow-y-auto">
-          {events.map((event, index) => (
+          {console.log(state.ashbinEvents)}
+          {state.ashbinEvents.map((event, index) => (
             <li key={index}>
-              <Event event={event} />
+              {event.time}
             </li>
           ))}
         </ul>
