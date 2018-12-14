@@ -169,7 +169,8 @@ export const createScene = (engine, canvas, size) => {
   scene.beginDirectAnimation(camera, [rotateCamAnimation, moveCamForwardAnimation], 0, 25 * frameRate, true, 1)
   camera.attachControl(canvas, scene)
 
-  // BABYLON ON FIREEEE
+  // Init city state here according to initial score
+  /*
   const fire1 = createFire("fire1", scene)
   fire1.emitter = new Vector3(6, 25, 0.5)
 
@@ -188,6 +189,7 @@ export const createScene = (engine, canvas, size) => {
   //   const oldNote = 0
   // waterSetNote(waterCrust, newNote, oldNote, scene )
   // }, 5000)
+  */
 
   return {scene, waterCrust}
 }
