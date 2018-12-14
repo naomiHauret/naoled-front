@@ -1,8 +1,8 @@
 import { h } from "hyperapp"
 
-export default () => {
+export default (props) => {
   return (
-    <div class="tc">
+    <div class="tc" {...props}>
       <div class="loader relative block pin m-a">
         <span class="absolute block pin m-a" />
       </div>

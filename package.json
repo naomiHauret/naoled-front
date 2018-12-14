@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "@hyperapp/router": "^0.7.0",
+    "animejs": "^2.2.0",
     "babylonjs": "^3.3.0",
     "browserslist": "^4.3.4",
     "hyperapp": "^1.2.6",

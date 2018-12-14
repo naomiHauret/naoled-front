@@ -15,18 +15,18 @@ export const facts = [
 ]
 
 const TRASH = "TRASH"
-const ASHTRAY = "ASHTRAY"
+const ASHBIN = "ASHBIN"
 const LIGHT = "LIGHT"
 const DOOR = "DOOR"
 const STAIRS = "STAIRS"
 
-export const viewsId = [TRASH, ASHTRAY, LIGHT, DOOR, STAIRS]
+export const viewsId = [TRASH, ASHBIN, LIGHT, DOOR, STAIRS]
 export const views = {
   TRASH: {
     title: "Gobelets de café ☕",
     text: "Que faites-vous de vos gobelets ? Pensez-vous bien à les recycler ? 🤔",
   },
-  ASHTRAY: {
+  ASHBIN: {
     title: "Mégots de cigarette 🚬",
     text: "Les mégots, à la poubelle ou par terre ? 😬",
   },
