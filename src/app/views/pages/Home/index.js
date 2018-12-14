@@ -3,66 +3,123 @@ import { Engine } from "babylonjs"
 import { createScene } from "app/views/3d/Scene"
 import Layout from "app/views/components/Layout"
 import Event from "app/views/components/Event"
-import { render } from "lit-html"
-
-const events = [
-  {
-    id: 0,
-    time: "12:15",
-    title: "Hello, this is event",
-  },
-  {
-    id: 1,
-    time: "13:15",
-    title: "Hello, this is event 2",
-  },
-  {
-    id: 2,
-    time: "14:15",
-    title: "Hello, this is event 3",
-  },
-  {
-    id: 3,
-    time: "16:15",
-    title: "Hello, this is event 4",
-  },
-  {
-    id: 4,
-    time: "18:15",
-    title: "Hello, this is event 5",
-  },
-]
+import Loader from "app/views/components/Loader"
+import { views, facts, viewsId } from "content"
+import anime from "animejs"
 
 export default () => (state, actions) => {
   const { renderCity } = actions
+  const changeViewDelay = 60000
+  const list = Object.keys(state).filter((value) => value.toLowerCase().includes(state.uiInfo.toLowerCase())) // get which list to loop on
+
   return (
     <Layout state={state} actions={actions}>
       <canvas
-        oncreate={(e) => {
-          renderCity(e)
+        oncreate={() => {
+          renderCity()
         }}
         class="w-75 h-100vh touch-none"
         id="render"
       />
-      <aside class="grow-1 flex flex-col pa-45 bg-greyLightest">
-        <h1 id="categoryTitle" class="text-black fw-medium fs-xl mb-15">
-          Gobelets de café
+      <aside
+        oncreate={() => setInterval(actions.changeView, changeViewDelay)}
+        class="w-25 flex flex-col pa-45 bg-greyLightest relative"
+      >
+        <h1
+          onupdate={(e) =>
+            anime({
+              targets: e,
+              translateX: [-25, 0],
+              duration: 1350,
+              opacity: [0, 1],
+              easing: "easeOutExpo",
+            })
+          }
+          id="categoryTitle"
+          class="text-black fw-medium fs-xl mb-15"
+        >
+          {views[state.uiInfo].title}
         </h1>
-        <p class="text-greyDark fs-sm mb-45" id="description">
-          Historique en direct des gobelets récupérés depuis la machine à café et dex gobelets jétés dans la bonne
-          poubelle
+        <p
+          class="text-greyDark fs-sm mb-45"
+          id="description"
+          onupdate={(e) =>
+            anime({
+              targets: e,
+              translateX: [-25, 0],
+              duration: 1250,
+              delay: 75,
+              opacity: [0, 1],
+              easing: "easeOutExpo",
+            })
+          }
+        >
+          {views[state.uiInfo].text}
         </p>
-        <ul id="eventsList" class="maxh-80vh mnh-20 ph-20 overflow-y-auto">
-          {events.map((event, index) => (
-            <li key={index}>
-              <Event event={event} />
-            </li>
-          ))}
-        </ul>
-        <div id="importantRealLifeMessage" class="mt-auto pa-45 bg-purple">
-          <p class="fs-lg pa-0 text-grey">
-            Attention à la pollution y’a plein d’ours polaires qui sont morts, c’est très très grave
-          </p>
+        {state[list] !== undefined && state[list].length > 0 ? (
+          <ul
+            id="eventsList"
+            class="maxh-80vh mnh-20 ph-20"
+            onupdate={(e) => {
+              return anime({
+                targets: "li",
+                translateY: [10, 0],
+                opacity: [0, 1],
+                overflowY: ["hidden", "auto"],
+                easing: "easeInOutQuart",
+                duration: (el, i, l) => {
+                  return 250 + i * 100
+                },
+                elasticity: (el, i, l) => {
+                  return 200 + i * 200
+                },
+              })
+            }}
+          >
+            {state[list].map((event, index) => (
+              <li key={index}>
+                <Event data={event} />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <Loader
+            onupdate={(e) =>
+              anime({
+                targets: e,
+                duration: 1000,
+                delay: 450,
+                opacity: [0, 1],
+                translateY: [15, 0],
+                easing: "easeInOutQuart",
+              })
+            }
+            onremove={(e) =>
+              anime({
+                targets: e,
+                duration: 850,
+                opacity: [0, 1],
+                translateY: [0, -20],
+                easing: "easeInOutExpo",
+              })
+            }
+          />
+        )}
+        <div
+          id="importantRealLifeMessage"
+          onupdate={(e) =>
+            anime({
+              targets: e,
+              translateX: [-25, 0],
+              duration: 1150,
+              delay: 250,
+              opacity: [0, 1],
+              easing: "easeOutExpo",
+            })
+          }
+          class="mt-auto pa-45 bg-purple"
+        >
+          <p class="fs-lg pa-0 text-grey">{facts[state.randomFact]}</p>
         </div>
       </aside>
     </Layout>

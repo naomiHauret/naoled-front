@@ -5,9 +5,7 @@ export default (props, children) => {
   const { state, actions, key } = props
   const { listen } = actions
   return (
-    <div
-      oncreate={listen}
-    >
+    <div oncreate={listen}>
       <header>
         <Link to="/" title="Naoled">
           <svg width="287" height="153" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,19 +30,6 @@ export default (props, children) => {
           </svg>
         </Link>
       </header>
-      <nav class="fw-medium">
-        <ul class="flex list-none">
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-          <li>
-            <Link to="/history">Historique</Link>
-          </li>
-          <li>
-            <Link to="/about">A propos</Link>
-          </li>
-        </ul>
-      </nav>
       <main class="grow-1 flex flex-wrap">{children}</main>
     </div>
   )

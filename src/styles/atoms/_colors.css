@@ -1,13 +1,13 @@
 :root {
   --white: #ffffff;
-  --black: #26273B;
+  --black: #26273b;
   --greyDark: #454560;
-  --greyLight: #D6D6E1;
-  --greyLightest: #F0F0F5;
-  --grey: #ACADC1;
-  --negative: #FD4D67;
-  --positive: #00CFAE;
-  --primary: #8D57FF;
+  --greyLight: #d6d6e1;
+  --greyLightest: #f0f0f5;
+  --grey: #acadc1;
+  --negative: #fd4d67;
+  --positive: #00cfae;
+  --primary: #8d57ff;
 }
 
 /* Texts */
@@ -34,7 +34,6 @@
 .text-negative {
   color: var(--negative);
 }
-
 
 /* Backgrounds */
 

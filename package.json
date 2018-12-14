@@ -15,6 +15,7 @@
     "format": "npm run css:prettify && npm run js:prettify",
     "prod": "npm run prod:build && npm run prod:wds",
     "deploy": "npm run prod:build && npx surge --domain naoled.surge.sh",
+    "preprod:deploy": "npm run prod:build && npx surge --domain preprod-naoled.surge.sh",
     "prod:deploy": "npx surge --domain naoled.surge.sh"
   },
   "author": "",
@@ -48,9 +49,9 @@
   },
   "dependencies": {
     "@hyperapp/router": "^0.7.0",
+    "animejs": "^2.2.0",
     "babylonjs": "^3.3.0",
     "browserslist": "^4.3.4",
-    "lit-html": "^0.13.0",
     "hyperapp": "^1.2.6",
     "socket.io-client": "^2.1.1"
   },

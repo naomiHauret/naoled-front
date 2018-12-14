@@ -13,6 +13,10 @@
 }
 
 /* Sizes */
+.fs-xs {
+  font-size: 0.6rem; /* approx 12px */
+}
+
 .fs-sm {
   font-size: 0.9rem; /* approx 18px */
 }
@@ -26,5 +30,5 @@
 }
 
 .fs-xl {
-  font-size: 1.333333333rem;  /* approx 24px */
+  font-size: 1.333333333rem; /* approx 24px */
 }
