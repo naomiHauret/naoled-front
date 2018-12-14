@@ -167,7 +167,6 @@ export const createScene = (engine, canvas, size) => {
   moveCamForwardAnimation.setEasingFunction(moveCamEasingFunction)
 
   scene.beginDirectAnimation(camera, [rotateCamAnimation, moveCamForwardAnimation], 0, 25 * frameRate, true, 1)
-  camera.attachControl(canvas, scene)
 
   // Init city state here according to initial score
   /*
