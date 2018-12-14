@@ -3,12 +3,12 @@ import { location } from "@hyperapp/router"
 import actions from "app/actions"
 import App from "app/views"
 import "./index.css"
-import { viewsId }  from "content"
+import { viewsId } from "content"
 
 const state = {
   location: location.state,
   uiInfo: viewsId[0],
-  randomFact: 0,
+  randomFact: 0,
   ashbinEvents: [],
   trashEvents: [],
   doorEvents: [],

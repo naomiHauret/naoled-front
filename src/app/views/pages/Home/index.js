@@ -9,7 +9,7 @@ import { views, facts, viewsId } from "content"
 export default () => (state, actions) => {
   const { renderCity } = actions
   const changeViewDelay = process.env.NODE_ENV === "development" ? 5000 : 60000
-  const list = Object.keys(state).filter(value => value.toLowerCase().includes(state.uiInfo.toLowerCase()))
+  const list = Object.keys(state).filter((value) => value.toLowerCase().includes(state.uiInfo.toLowerCase()))
   console.log(state[list])
   return (
     <Layout state={state} actions={actions}>
@@ -20,7 +20,10 @@ export default () => (state, actions) => {
         class="w-75 h-100vh touch-none"
         id="render"
       />
-      <aside oncreate={() => setInterval(actions.changeView, changeViewDelay)} class="w-25 flex flex-col pa-45 bg-greyLightest">
+      <aside
+        oncreate={() => setInterval(actions.changeView, changeViewDelay)}
+        class="w-25 flex flex-col pa-45 bg-greyLightest"
+      >
         <h1 id="categoryTitle" class="text-black fw-medium fs-xl mb-15">
           {views[state.uiInfo].title}
         </h1>
@@ -35,9 +38,7 @@ export default () => (state, actions) => {
           ))}
         </ul>
         <div id="importantRealLifeMessage" class="mt-auto pa-45 bg-purple">
-          <p class="fs-lg pa-0 text-grey">
-            {facts[state.randomFact]}
-          </p>
+          <p class="fs-lg pa-0 text-grey">{facts[state.randomFact]}</p>
         </div>
       </aside>
     </Layout>
