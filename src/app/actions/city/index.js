@@ -77,7 +77,7 @@ export default {
   // Trash
   onTrashEvents: (data) => (state, actions) => {
     console.log("hello from trash event treatment")
-    data.text = data.type === 'out' ? 'Déchet non recyclé 👎' : 'Déchet recyclé 👍'
+    data.text = data.type === "out" ? "Déchet non recyclé 👎" : "Déchet recyclé 👍"
     state.trashEvents.push(data)
 
     // switch data type (trash in/out), 3d effect go here...
@@ -91,7 +91,7 @@ export default {
   // Light
   onLightEvents: (data) => (state, actions) => {
     console.log("hello from light event treatment")
-    data.text = data.type === 'on' ? 'Lumière allumée pour rien 👎' : 'Lumière éteinte 👍'
+    data.text = data.type === "on" ? "Lumière allumée pour rien 👎" : "Lumière éteinte 👍"
     state.lightEvents.push(data)
 
     // switch data type (light on/off), 3d effect go here...
@@ -105,7 +105,7 @@ export default {
   // Door
   onDoorEvents: (data) => (state, actions) => {
     console.log("hello from door event treatment")
-    data.text = data.type === 'open' ? 'Porte ouverte avec le chauffage allumé 👎' : 'Porte fermée 👍'
+    data.text = data.type === "open" ? "Porte ouverte avec le chauffage allumé 👎" : "Porte fermée 👍"
     state.doorEvents.push(data)
     // switch data type (light open/closed), 3d effect go here...
 
@@ -131,7 +131,7 @@ export default {
   // Stairs
   onStairsEvents: (data) => (state, actions) => {
     console.log("hello from stairs event treatment")
-    data.text = 'Libérez l\'énergie ! ⚡'
+    data.text = "Libérez l'énergie ! ⚡"
 
     state.stairsEvents.push(data)
 
