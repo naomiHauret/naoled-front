@@ -14,7 +14,7 @@ const state = {
   doorEvents: [],
   lightEvents: [],
   stairsEvents: [],
-  score: 0
+  score: 0,
 }
 
 const bodyTag = document.querySelector("body")

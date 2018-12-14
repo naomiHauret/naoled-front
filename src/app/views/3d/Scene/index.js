@@ -28,7 +28,7 @@ import { createCrust, addCrustSlice } from "app/views/3d/Crust"
 import { createWater, waterSetNote } from "app/views/3d/Water"
 import upgradeMesh from "app/views/3d/Subdivide"
 
-export let cr;
+export let cr
 
 export const createScene = (engine, canvas, size) => {
   upgradeMesh()
@@ -190,5 +190,5 @@ export const createScene = (engine, canvas, size) => {
   // }, 5000)
   */
 
-  return {scene, waterCrust}
+  return { scene, waterCrust }
 }

@@ -3,7 +3,6 @@ const merge = require('webpack-merge')
 const HtmlPlugin = require('html-webpack-plugin')
 const CompressionPlugin = require('brotli-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const PrerenderSPAPlugin = require('prerender-spa-plugin')
 const common = require('./webpack.common.js')
 
 let plugins = [
@@ -16,18 +15,6 @@ let plugins = [
       collapseInlineTagWhitespace: true,
       removeComments: true,
       removeRedundantAttributes: true,
-    },
-  }),
-  new PrerenderSPAPlugin({
-    staticDir: path.join(__dirname, "dist"),
-    indexPath: path.resolve("./dist/200.html"),
-    routes: ["/", "/about", "/history", "/dashboard"],
-    minify: {
-      collapseBooleanAttributes: true,
-      collapseWhitespace: true,
-      decodeEntities: true,
-      keepClosingSlash: true,
-      sortAttributes: true,
     },
   }),
   new CompressionPlugin({

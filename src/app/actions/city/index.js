@@ -36,10 +36,10 @@ export default {
   //
   // Init score
   initScoreAsync: () => (state, actions) => {
-      // fetch score goes here
-      return {
-        ...state,
-      }
+    // fetch score goes here
+    return {
+      ...state,
+    }
   },
   //
   // City effects
@@ -49,7 +49,6 @@ export default {
     })
 
     socket.on("ashbinAdd", (data) => {
-
       actions.onAshbinEvents(data)
     })
 
@@ -84,7 +83,7 @@ export default {
     })
 
     socket.on("stairsAdd", (data) => {
-        actions.onStairsEvents(data)
+      actions.onStairsEvents(data)
     })
   },
 
@@ -92,9 +91,9 @@ export default {
   // Trash
   onTrashEvents: (data) => (state, actions) => {
     console.log("hello from trash event treatment", data)
-    const score= data.score/9960
+    const score = data.score / 9960
     data.text = data.type === "out" ? "Déchet non recyclé 👎" : "Déchet recyclé 👍"
-    waterSetNote(waterCrust, score, state.score, scene )
+    waterSetNote(waterCrust, score, state.score, scene)
     state.trashEvents.push(data)
 
     // switch data type (trash in/out), 3d effect go here...
@@ -110,9 +109,9 @@ export default {
   // Light
   onLightEvents: (data) => (state, actions) => {
     console.log("hello from light event treatment")
-    const score= data.score/9960
+    const score = data.score / 9960
     data.text = data.type === "on" ? "Lumière allumée pour rien 👎" : "Lumière éteinte 👍"
-    waterSetNote(waterCrust, score, state.score, scene )
+    waterSetNote(waterCrust, score, state.score, scene)
     state.lightEvents.push(data)
 
     // switch data type (light on/off), 3d effect go here...
@@ -128,14 +127,14 @@ export default {
     console.log("hello from door event treatment")
     const score = data.score / 9960
     data.text = data.type === "open" ? "Porte ouverte avec le chauffage allumé 👎" : "Porte fermée 👍"
-    waterSetNote(waterCrust, score, state.score, scene )
-    state.score= data.score/9960
+    waterSetNote(waterCrust, score, state.score, scene)
+    state.score = data.score / 9960
     state.doorEvents.push(data)
     // switch data type (light open/closed), 3d effect go here...
 
     return {
       ...state,
-      score
+      score,
     }
   },
 
@@ -144,7 +143,7 @@ export default {
   onAshbinEvents: (data) => (state, actions) => {
     console.log("hello from ashbin event treatment")
     const score = data.score / 9960
-    waterSetNote(waterCrust, newScore, state.score, scene )
+    waterSetNote(waterCrust, newScore, state.score, scene)
     state.ashbinEvents.push(data)
 
     // 3d effect go here...
@@ -161,7 +160,7 @@ export default {
     console.log("hello from stairs event treatment")
     data.text = "Libérez l'énergie ! ⚡"
     const score = data.score / 9960
-    waterSetNote(waterCrust, score, state.score, scene )
+    waterSetNote(waterCrust, score, state.score, scene)
     state.stairsEvents.push(data)
 
     // 3d effect go here...
