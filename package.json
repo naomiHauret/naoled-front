@@ -51,7 +51,6 @@
     "@hyperapp/router": "^0.7.0",
     "babylonjs": "^3.3.0",
     "browserslist": "^4.3.4",
-    "lit-html": "^0.13.0",
     "hyperapp": "^1.2.6",
     "socket.io-client": "^2.1.1"
   },
