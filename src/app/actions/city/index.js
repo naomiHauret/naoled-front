@@ -3,8 +3,8 @@ import { Engine } from "babylonjs"
 import { createScene } from "app/views/3d/Scene"
 import { viewsId, facts } from "content"
 import { waterSetNote } from "app/views/3d/Water"
-import toastr from "toastr";
-import { ASHBIN, TRASH, STAIRS } from "../../../content";
+import toastr from "toastr"
+import { ASHBIN, TRASH, STAIRS } from "../../../content"
 
 const url = process.env.NODE_ENV === "production" ? process.env.SOCKET_URL_PROD : process.env.SOCKET_URL_DEV
 const socket = io(url)
@@ -57,54 +57,54 @@ export default {
   listen: () => (state, actions) => {
     socket.on("event", () => {
       console.log("hello from socket")
-      toastr.info('Bienvenue sur NaoLED !', '', toastrOptions)
+      toastr.info("Bienvenue sur NaoLED !", "", toastrOptions)
     })
 
     socket.on("ashbinAdd", (data) => {
       actions.onAshbinEvents(data)
-      state.uiInfo !== ASHBIN && toastr.success('Quelqu\'un a bien jeté son mégot', '', toastrOptions)
+      state.uiInfo !== ASHBIN && toastr.success("Quelqu'un a bien jeté son mégot", "", toastrOptions)
     })
 
     socket.on("trashIn", (data) => {
       data.type = "in"
       actions.onTrashEvents(data)
-      state.uiInfo !== TRASH && toastr.success('Quelqu\'un a bien recyclé son gobelet', '', toastrOptions)
+      state.uiInfo !== TRASH && toastr.success("Quelqu'un a bien recyclé son gobelet", "", toastrOptions)
     })
 
     socket.on("trashOut", (data) => {
       data.type = "out"
       actions.onTrashEvents(data)
-      state.uiInfo !== TRASH && toastr.error('Quelqu\'un a mal recyclé son gobelet', '', toastrOptions)
+      state.uiInfo !== TRASH && toastr.error("Quelqu'un a mal recyclé son gobelet", "", toastrOptions)
     })
 
     socket.on("openDoor", (data) => {
       data.type = "open"
       actions.onDoorEvents(data)
-      state.uiInfo !== DOOR && toastr.error('La porte est ouverte alors que le chauffage est allumé', '', toastrOptions)
+      state.uiInfo !== DOOR && toastr.error("La porte est ouverte alors que le chauffage est allumé", "", toastrOptions)
     })
 
     socket.on("closeDoor", (data) => {
       data.type = "close"
       actions.onDoorEvents(data)
-      state.uiInfo !== DOOR && toastr.success('Quelqu\'un a fermé la porte', '', toastrOptions)
-
+      state.uiInfo !== DOOR && toastr.success("Quelqu'un a fermé la porte", "", toastrOptions)
     })
 
     socket.on("switchLightOn", (data) => {
       data.type = "on"
       actions.onLightEvents(data)
-      state.uiInfo !== LIGHT && toastr.error('La lumière reste éteinte pour rien', '', toastrOptions)
+      state.uiInfo !== LIGHT && toastr.error("La lumière reste éteinte pour rien", "", toastrOptions)
     })
 
     socket.on("switchLightOff", (data) => {
       data.type = "off"
       actions.onLightEvents(data)
-      state.uiInfo !== LIGHT && toastr.success('Quelqu\'un a bien éteint la lumière', '', toastrOptions)
+      state.uiInfo !== LIGHT && toastr.success("Quelqu'un a bien éteint la lumière", "", toastrOptions)
     })
 
     socket.on("stairsAdd", (data) => {
       actions.onStairsEvents(data)
-      state.uiInfo !== STAIRS && toastr.success('Quelqu\'un est en train de donner de l\'énergie ⚡⚡⚡', '', toastrOptions)
+      state.uiInfo !== STAIRS &&
+        toastr.success("Quelqu'un est en train de donner de l'énergie ⚡⚡⚡", "", toastrOptions)
     })
   },
 
@@ -112,7 +112,7 @@ export default {
   // Trash
   onTrashEvents: (data) => (state, actions) => {
     console.log("hello from trash event treatment", data)
-    const score = data.score / 9960
+    const score = data.doc.score / 9960
     data.text = data.type === "out" ? "Déchet non recyclé 👎" : "Déchet recyclé 👍"
     waterSetNote(waterCrust, score, state.score, scene)
     state.trashEvents.push(data)
@@ -130,7 +130,7 @@ export default {
   // Light
   onLightEvents: (data) => (state, actions) => {
     console.log("hello from light event treatment")
-    const score = data.score / 9960
+    const score = data.doc.score / 9960
     data.text = data.type === "on" ? "Lumière allumée pour rien 👎" : "Lumière éteinte 👍"
     waterSetNote(waterCrust, score, state.score, scene)
     state.lightEvents.push(data)
@@ -146,10 +146,10 @@ export default {
   // Door
   onDoorEvents: (data) => (state, actions) => {
     console.log("hello from door event treatment")
-    const score = data.score / 9960
+    const score = data.doc.score / 9960
     data.text = data.type === "open" ? "Porte ouverte avec le chauffage allumé 👎" : "Porte fermée 👍"
     waterSetNote(waterCrust, score, state.score, scene)
-    state.score = data.score / 9960
+    state.score = data.doc.score / 9960
     state.doorEvents.push(data)
     // switch data type (light open/closed), 3d effect go here...
 
@@ -163,7 +163,7 @@ export default {
   // Ashbin
   onAshbinEvents: (data) => (state, actions) => {
     console.log("hello from ashbin event treatment")
-    const score = data.score / 9960
+    const score = data.doc.score / 9960
     waterSetNote(waterCrust, newScore, state.score, scene)
     state.ashbinEvents.push(data)
 
@@ -178,7 +178,7 @@ export default {
   onStairsEvents: (data) => (state, actions) => {
     console.log("hello from stairs event treatment")
     data.text = "Libérez l'énergie ! ⚡"
-    const score = data.score / 9960
+    const score = data.doc.score / 9960
     waterSetNote(waterCrust, score, state.score, scene)
     state.stairsEvents.push(data)
 
