@@ -30,16 +30,17 @@ export default () => (state, actions) => {
         <p class="text-greyDark fs-sm mb-45" id="description">
           {views[state.uiInfo].text}
         </p>
-        {
-          state[list] !== undefined && state[list].length > 0 ? <ul id="eventsList" class="maxh-80vh mnh-20 ph-20 overflow-y-auto">
-
-          { state[list].map((event, index) => (
+        {state[list] !== undefined && state[list].length > 0 ? (
+          <ul id="eventsList" class="maxh-80vh mnh-20 ph-20 overflow-y-auto">
+            {state[list].map((event, index) => (
               <li key={index}>
                 <Event data={event} />
               </li>
             ))}
-          </ul> : <Loader />
-        }
+          </ul>
+        ) : (
+          <Loader />
+        )}
         <div id="importantRealLifeMessage" class="mt-auto pa-45 bg-purple">
           <p class="fs-lg pa-0 text-grey">{facts[state.randomFact]}</p>
         </div>
