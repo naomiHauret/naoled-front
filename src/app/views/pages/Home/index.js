@@ -4,10 +4,13 @@ import { createScene } from "app/views/3d/Scene"
 import Layout from "app/views/components/Layout"
 import Event from "app/views/components/Event"
 import { render } from "lit-html"
+import { views, facts, viewsId } from "content"
 
 export default () => (state, actions) => {
   const { renderCity } = actions
-  console.log(state.trashEvents)
+  const changeViewDelay = process.env.NODE_ENV === "development" ? 5000 : 60000
+  const list = Object.keys(state).filter(value => value.toLowerCase().includes(state.uiInfo.toLowerCase()))
+  console.log(state[list])
   return (
     <Layout state={state} actions={actions}>
       <canvas
@@ -17,25 +20,23 @@ export default () => (state, actions) => {
         class="w-75 h-100vh touch-none"
         id="render"
       />
-      <aside class="grow-1 flex flex-col pa-45 bg-greyLightest">
+      <aside oncreate={() => setInterval(actions.changeView, changeViewDelay)} class="w-25 flex flex-col pa-45 bg-greyLightest">
         <h1 id="categoryTitle" class="text-black fw-medium fs-xl mb-15">
-          Gobelets de café
+          {views[state.uiInfo].title}
         </h1>
         <p class="text-greyDark fs-sm mb-45" id="description">
-          Historique en direct des gobelets récupérés depuis la machine à café et dex gobelets jétés dans la bonne
-          poubelle
+          {views[state.uiInfo].text}
         </p>
         <ul id="eventsList" class="maxh-80vh mnh-20 ph-20 overflow-y-auto">
-          {console.log(state.ashbinEvents)}
-          {state.ashbinEvents.map((event, index) => (
+          {state[list].map((event, index) => (
             <li key={index}>
-              {event.time}
+              <Event data={event} />
             </li>
           ))}
         </ul>
         <div id="importantRealLifeMessage" class="mt-auto pa-45 bg-purple">
           <p class="fs-lg pa-0 text-grey">
-            Attention à la pollution y’a plein d’ours polaires qui sont morts, c’est très très grave
+            {facts[state.randomFact]}
           </p>
         </div>
       </aside>

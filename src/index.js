@@ -1,14 +1,16 @@
 import { h, app } from "hyperapp"
 import { location } from "@hyperapp/router"
-import debug from 'hyperapp-debug'
 import actions from "app/actions"
 import App from "app/views"
 import "./index.css"
+import { viewsId }  from "content"
 
 const state = {
   location: location.state,
+  uiInfo: viewsId[0],
+  randomFact: 0,
   ashbinEvents: [],
-  trashEvents: [{id: 'iohfihef', time: '6486464453'}],
+  trashEvents: [],
   doorEvents: [],
   lightEvents: [],
   stairsEvents: [],
@@ -19,4 +21,3 @@ const enhancedActions = Object.assign({}, { location: location.actions }, action
 const view = (state, actions) => <App state={state} actions={enhancedActions} />
 const main = app(state, enhancedActions, view, bodyTag)
 const unsubscribe = location.subscribe(main.location)
-process.env.NODE_ENV === 'development' && debug(app)(state, enhancedActions, view)

@@ -1,14 +1,17 @@
 import io from "socket.io-client"
 import { Engine } from "babylonjs"
 import { createScene } from "app/views/3d/Scene"
+import { viewsId, facts } from "content"
 
 const url = process.env.NODE_ENV === "production" ? process.env.SOCKET_URL_PROD : process.env.SOCKET_URL_DEV
 const socket = io(url)
 let scene
 
 export default {
+  //
+  // City
   renderCity: () => (state, actions) => {
-    const canvas = document.querySelector('#render')
+    const canvas = document.querySelector("#render")
     const engine = new Engine(canvas, true)
     const size = 40
     scene = createScene(engine, canvas, size)
@@ -23,9 +26,12 @@ export default {
       ...state,
     }
   },
+
+  //
+  // City effects
   listen: () => (state, actions) => {
     socket.on("event", (data) => {
-      actions.onTrashEvents({id: 'fepojfpef', time:'dijj'})
+      actions.onTrashEvents({ id: "fepojfpef", time: "dijj" })
     })
 
     socket.on("ashbinAdd", (data) => {
@@ -33,32 +39,32 @@ export default {
     })
 
     socket.on("trashIn", (data) => {
-      data.type = 'in'
+      data.type = "in"
       actions.onTrashEvents(data)
     })
 
     socket.on("trashOut", (data) => {
-      data.type = 'out'
+      data.type = "out"
       actions.onTrashEvents(data)
     })
 
     socket.on("openDoor", (data) => {
-      data.type = 'open'
+      data.type = "open"
       actions.onDoorEvents(data)
     })
 
     socket.on("closeDoor", (data) => {
-      data.type = 'close'
+      data.type = "close"
       actions.onDoorEvents(data)
     })
 
     socket.on("switchLightOn", (data) => {
-      data.type = 'on'
+      data.type = "on"
       actions.onLightEvents(data)
     })
 
     socket.on("switchLightOff", (data) => {
-      data.type = 'off'
+      data.type = "off"
       actions.onLightEvents(data)
     })
 
@@ -68,46 +74,48 @@ export default {
   },
 
   //
-  //// Trash
+  // Trash
   onTrashEvents: (data) => (state, actions) => {
     console.log("hello from trash event treatment")
+    data.text = data.type === 'out' ? 'Déchet non recyclé 👎' : 'Déchet recyclé 👍'
     state.trashEvents.push(data)
 
     // switch data type (trash in/out), 3d effect go here...
 
     return {
-     ...state
-      }
+      ...state,
+    }
   },
 
   //
-  //// Light
+  // Light
   onLightEvents: (data) => (state, actions) => {
     console.log("hello from light event treatment")
+    data.text = data.type === 'on' ? 'Lumière allumée pour rien 👎' : 'Lumière éteinte 👍'
     state.lightEvents.push(data)
 
     // switch data type (light on/off), 3d effect go here...
 
     return {
-      ...state
+      ...state,
     }
   },
 
   //
-  //// Door
+  // Door
   onDoorEvents: (data) => (state, actions) => {
     console.log("hello from door event treatment")
+    data.text = data.type === 'open' ? 'Porte ouverte avec le chauffage allumé 👎' : 'Porte fermée 👍'
     state.doorEvents.push(data)
-
     // switch data type (light open/closed), 3d effect go here...
 
     return {
-      ...state
+      ...state,
     }
   },
 
   //
-  //// Ashbin
+  // Ashbin
   onAshbinEvents: (data) => (state, actions) => {
     console.log("hello from ashbin event treatment")
     state.ashbinEvents.push(data)
@@ -115,20 +123,33 @@ export default {
     // 3d effect go here...
 
     return {
-      ...state
+      ...state,
     }
   },
 
   //
-  ///// Stairs
+  // Stairs
   onStairsEvents: (data) => (state, actions) => {
     console.log("hello from stairs event treatment")
+    data.text = 'Libérez l\'énergie ! ⚡'
+
     state.stairsEvents.push(data)
 
     // 3d effect go here...
 
     return {
-      ...state
+      ...state,
     }
-  }
+  },
+
+  //
+  // Change UI stuff to display
+  changeView: () => (state, actions) => {
+    let previousUI = viewsId.indexOf(state.uiInfo)
+
+    return {
+      uiInfo: previousUI < viewsId.length ? viewsId[previousUI + 1] : 0,
+      randomFact: Math.floor(Math.random() * facts.length),
+    }
+  },
 }
