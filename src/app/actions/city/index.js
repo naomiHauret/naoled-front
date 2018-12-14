@@ -30,8 +30,8 @@ export default {
   //
   // City effects
   listen: () => (state, actions) => {
-    socket.on("event", (data) => {
-      actions.onTrashEvents({ id: "fepojfpef", time: "dijj" })
+    socket.on("event", () => {
+      console.log("hello from socket")
     })
 
     socket.on("ashbinAdd", (data) => {
@@ -145,10 +145,12 @@ export default {
   //
   // Change UI stuff to display
   changeView: () => (state, actions) => {
-    let previousUI = viewsId.indexOf(state.uiInfo)
+    const previousUI = viewsId.indexOf(state.uiInfo)
+    const length = viewsId.length - 1
+    const newUI = previousUI < length ? viewsId[previousUI + 1] : viewsId[0]
 
     return {
-      uiInfo: previousUI < viewsId.length ? viewsId[previousUI + 1] : 0,
+      uiInfo: newUI,
       randomFact: Math.floor(Math.random() * facts.length),
     }
   },

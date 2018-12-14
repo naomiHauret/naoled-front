@@ -30,19 +30,6 @@ export default (props, children) => {
           </svg>
         </Link>
       </header>
-      <nav class="fw-medium">
-        <ul class="flex list-none">
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-          <li>
-            <Link to="/history">Historique</Link>
-          </li>
-          <li>
-            <Link to="/about">A propos</Link>
-          </li>
-        </ul>
-      </nav>
       <main class="grow-1 flex flex-wrap">{children}</main>
     </div>
   )

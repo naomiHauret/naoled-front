@@ -7,7 +7,7 @@ import { viewsId } from "content"
 
 const state = {
   location: location.state,
-  uiInfo: viewsId[1],
+  uiInfo: viewsId[0],
   randomFact: 0,
   ashbinEvents: [],
   trashEvents: [],
