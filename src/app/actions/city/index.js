@@ -112,7 +112,7 @@ export default {
   // Trash
   onTrashEvents: (data) => (state, actions) => {
     console.log("hello from trash event treatment", data)
-    const score = data.score / 9960
+    const score = data.doc.score / 9960
     data.text = data.type === "out" ? "Déchet non recyclé 👎" : "Déchet recyclé 👍"
     waterSetNote(waterCrust, score, state.score, scene)
     state.trashEvents.push(data)
@@ -130,7 +130,7 @@ export default {
   // Light
   onLightEvents: (data) => (state, actions) => {
     console.log("hello from light event treatment")
-    const score = data.score / 9960
+    const score = data.doc.score / 9960
     data.text = data.type === "on" ? "Lumière allumée pour rien 👎" : "Lumière éteinte 👍"
     waterSetNote(waterCrust, score, state.score, scene)
     state.lightEvents.push(data)
@@ -146,10 +146,10 @@ export default {
   // Door
   onDoorEvents: (data) => (state, actions) => {
     console.log("hello from door event treatment")
-    const score = data.score / 9960
+    const score = data.doc.score / 9960
     data.text = data.type === "open" ? "Porte ouverte avec le chauffage allumé 👎" : "Porte fermée 👍"
     waterSetNote(waterCrust, score, state.score, scene)
-    state.score = data.score / 9960
+    state.score = data.doc.score / 9960
     state.doorEvents.push(data)
     // switch data type (light open/closed), 3d effect go here...
 
@@ -163,7 +163,7 @@ export default {
   // Ashbin
   onAshbinEvents: (data) => (state, actions) => {
     console.log("hello from ashbin event treatment")
-    const score = data.score / 9960
+    const score = data.doc.score / 9960
     waterSetNote(waterCrust, newScore, state.score, scene)
     state.ashbinEvents.push(data)
 
@@ -178,7 +178,7 @@ export default {
   onStairsEvents: (data) => (state, actions) => {
     console.log("hello from stairs event treatment")
     data.text = "Libérez l'énergie ! ⚡"
-    const score = data.score / 9960
+    const score = data.doc.score / 9960
     waterSetNote(waterCrust, score, state.score, scene)
     state.stairsEvents.push(data)
 

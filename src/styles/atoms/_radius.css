@@ -1,3 +1,7 @@
 .radius-lg {
   border-radius: 1.5rem;
 }
+
+.radius-100 {
+  border-radius: 100%;
+}

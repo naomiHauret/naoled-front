@@ -1,0 +1,14 @@
+.scoreCounter {
+  bottom: 1rem;
+  right: calc(25% + 2.5rem);
+  width: 6.5rem;
+  height: 6.5rem;
+  background: linear-gradient(var(--white), #e4e4e9);
+  box-shadow: 0 0.5rem 6rem 0.25rem rgba(45, 35, 66, 0.15), 0 0.1rem 0.4rem 0 rgba(45, 35, 66, 0.125),
+    inset 0 -2px 0 0 #cfd1e3;
+}
+
+.scoreCounter span:last-child {
+  left: 45%;
+  top: 65%;
+}
