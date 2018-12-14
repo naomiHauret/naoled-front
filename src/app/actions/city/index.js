@@ -27,11 +27,20 @@ export default {
     window.addEventListener("resize", () => {
       engine.resize()
     })
+
+    actions.initScoreAsync()
     return {
       ...state,
     }
   },
-
+  //
+  // Init score
+  initScoreAsync: () => (state, actions) => {
+      // fetch score goes here
+      return {
+        ...state,
+      }
+  },
   //
   // City effects
   listen: () => (state, actions) => {
