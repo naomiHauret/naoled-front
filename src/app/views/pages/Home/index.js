@@ -123,14 +123,19 @@ export default () => (state, actions) => {
         </div>
       </aside>
       <div class="fixed flex scoreCounter radius-100 relative items-center justify-center shadow-light">
-        <span class="text-greyDark fs-xl fw-medium" onupdate={(e) => anime({
-          targets: e,
-          innerHTML: state.score,
-          round: 1,
-          easing: "easeInOutQuart",
-          delay: 1350,
-          duration: 2500,
-        })} />
+        <span
+          class="text-greyDark fs-xl fw-medium"
+          onupdate={(e) =>
+            anime({
+              targets: e,
+              innerHTML: state.score,
+              round: 1,
+              easing: "easeInOutQuart",
+              delay: 1350,
+              duration: 2500,
+            })
+          }
+        />
         <span class="text-grey absolute fs-sm">/ 9960</span>
       </div>
     </Layout>
